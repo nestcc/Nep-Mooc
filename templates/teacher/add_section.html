@@ -1,0 +1,110 @@
+﻿{% load static %}
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+{% include 'nav/head.html' %}
+
+<body>
+<div id="wrapper">
+
+    {#    TOP NAV#}
+    {% include 'nav/top_nav_tch.html' %}
+    {#    TOP NAV#}
+
+    {#    LEFT NAV#}
+    {% include 'nav/left_nav_tch.html' %}
+    {#    LEFT NAV#}
+
+    <div id="page-wrapper">
+        <div id="page-inner" style="height: 700px">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 class="page-header">
+                        添加"{{ cour_name }}"的章节
+                    </h1>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="panel panel-danger">
+                            <div class="panel-body">
+                                <div class="col-lg-12">
+                                    <form class="layui-form" id="sect_form" lay-filter="sect_form">
+                                        {% csrf_token %}
+
+                                        <div class="layui-form-item">
+                                            <label class="layui-form-label">名称</label>
+                                            <div class="layui-input-block">
+                                                <input type="text" name="sect_name" id="sect_name" autocomplete="off"
+                                                       placeholder="请输入章节名称" class="layui-input" value="{{ sect_name }}"
+                                                       required>
+                                            </div>
+                                        </div>
+
+                                        <div class="layui-form-item layui-form-text">
+                                            <label class="layui-form-label">内容</label>
+                                            <div class="layui-input-block">
+                                                <textarea placeholder="请输入内容" name="sect_text"
+                                                          id="sect_text">{{ sect_text }}</textarea>
+                                            </div>
+                                        </div>
+
+                                        <div class="layui-form-item">
+                                            <label class="layui-form-label">课件</label>
+                                            {#                                            {% csrf_token %}#}
+
+                                            <div class="layui-input-inline" style="margin-left: 30px">
+                                                <input type="text" id="sect_tag" autocomplete="off"
+                                                       placeholder="课程序号" class="layui-input" value=""
+                                                       required>
+                                            </div>
+                                            <button type="button" class="layui-btn" id="upload_btn">
+                                                <i class="layui-icon">&#xe67c;</i>上传视频文件
+                                            </button>
+                                        </div>
+
+                                        <div class="layui-form-item">
+                                            <div class="layui-input-block">
+                                                <button lay-submit="" class="layui-btn" lay-filter="submit_btn">立即提交
+                                                </button>
+                                                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                                                {#                                                <button id="save" class="layui-btn layui-btn-primary">重置</button>#}
+                                            </div>
+                                        </div>
+
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /. WRAPPER  -->
+<!-- JS Scripts-->
+<!-- jQuery Js -->
+<script src="{% static 'assets/js/jquery-1.10.2.js' %}"></script>
+<!-- Bootstrap Js -->
+<script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+
+<!-- Metis Menu Js -->
+<script src="{% static 'assets/js/jquery.metisMenu.js' %}"></script>
+<!-- Morris Chart Js -->
+<script src="{% static 'assets/js/morris/raphael-2.1.0.min.js' %}"></script>
+<script src="{% static 'assets/js/morris/morris.js' %}"></script>
+
+
+<script src="{% static 'assets/js/easypiechart.js' %}"></script>
+<script src="{% static 'assets/js/easypiechart-data.js' %}"></script>
+
+<!-- Custom Js -->
+<script src="{% static 'assets/js/custom-scripts.js' %}"></script>
+
+<script src={% static 'layui/layui.js' %}></script>
+<script src={% static 'tinymce/tinymce.js' %}></script>
+<script src={% static 'assets/js/layui/add_section.js' %}></script>
+</body>
+
+</html>

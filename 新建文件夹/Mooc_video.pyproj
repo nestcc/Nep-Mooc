@@ -1,0 +1,262 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{3785ffd3-0fbb-486c-8344-119f7396d8f8}</ProjectGuid>
+    <ProjectHome />
+    <StartupFile>manage.py</StartupFile>
+    <SearchPath />
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <ProjectTypeGuids>{5F0BE9CA-D677-4A4D-8806-6076C0FAAD37};{349c5851-65df-11da-9384-00065b846f21};{888888a0-9f3d-457c-b088-3a5042f75d52}</ProjectTypeGuids>
+    <LaunchProvider>Django launcher</LaunchProvider>
+    <InterpreterId>Global|PythonCore|3.7</InterpreterId>
+    <WebBrowserUrl>http://localhost</WebBrowserUrl>
+    <DjangoSettingsModule>Mooc_video.settings</DjangoSettingsModule>
+    <SuppressConfigureTestFrameworkPrompt>true</SuppressConfigureTestFrameworkPrompt>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
+  <PropertyGroup>
+    <VisualStudioVersion Condition=" '$(VisualStudioVersion)' == '' ">10.0</VisualStudioVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="static\assets\css\bootstrap-theme.min.css" />
+    <Content Include="static\assets\css\bootstrap.css" />
+    <Content Include="static\assets\css\custom-styles.css" />
+    <Content Include="static\assets\css\font-awesome.css" />
+    <Content Include="static\assets\css\main.css" />
+    <Content Include="static\assets\font-awesome\fonts\fontawesome-webfontba72.svg" />
+    <Content Include="static\assets\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="static\assets\js\bootstrap.min.js" />
+    <Content Include="static\assets\js\chart-data.js" />
+    <Content Include="static\assets\js\chart.min.js" />
+    <Content Include="static\assets\js\custom-scripts.js" />
+    <Content Include="static\assets\js\custom.js" />
+    <Content Include="static\assets\js\dataTables\dataTables.bootstrap.css" />
+    <Content Include="static\assets\js\dataTables\dataTables.bootstrap.js" />
+    <Content Include="static\assets\js\dataTables\jquery.dataTables.js" />
+    <Content Include="static\assets\js\easypiechart-data.js" />
+    <Content Include="static\assets\js\easypiechart.js" />
+    <Content Include="static\assets\js\jquery-1.10.2.js" />
+    <Content Include="static\assets\js\jquery-1.4.2.min.js" />
+    <Content Include="static\assets\js\jquery.metisMenu.js" />
+    <Content Include="static\assets\js\jquery.onlyforindex.js" />
+    <Content Include="static\assets\js\morris\morris-0.4.3.min.css" />
+    <Content Include="static\assets\js\morris\morris.js" />
+    <Content Include="static\assets\js\morris\raphael-2.1.0.min.js" />
+    <Content Include="static\layui\css\global.css" />
+    <Content Include="static\layui\css\layui.css" />
+    <Content Include="static\layui\css\layui.mobile.css" />
+    <Content Include="static\layui\css\modules\code.css" />
+    <Content Include="static\layui\css\modules\laydate\default\laydate.css" />
+    <Content Include="static\layui\css\modules\layer\default\icon-ext.png" />
+    <Content Include="static\layui\css\modules\layer\default\icon.png" />
+    <Content Include="static\layui\css\modules\layer\default\layer.css" />
+    <Content Include="static\layui\css\modules\layer\default\loading-0.gif" />
+    <Content Include="static\layui\css\modules\layer\default\loading-1.gif" />
+    <Content Include="static\layui\css\modules\layer\default\loading-2.gif" />
+    <Content Include="static\layui\font\iconfont.svg" />
+    <Content Include="static\layui\images\face\0.gif" />
+    <Content Include="static\layui\images\face\1.gif" />
+    <Content Include="static\layui\images\face\10.gif" />
+    <Content Include="static\layui\images\face\11.gif" />
+    <Content Include="static\layui\images\face\12.gif" />
+    <Content Include="static\layui\images\face\13.gif" />
+    <Content Include="static\layui\images\face\14.gif" />
+    <Content Include="static\layui\images\face\15.gif" />
+    <Content Include="static\layui\images\face\16.gif" />
+    <Content Include="static\layui\images\face\17.gif" />
+    <Content Include="static\layui\images\face\18.gif" />
+    <Content Include="static\layui\images\face\19.gif" />
+    <Content Include="static\layui\images\face\2.gif" />
+    <Content Include="static\layui\images\face\20.gif" />
+    <Content Include="static\layui\images\face\21.gif" />
+    <Content Include="static\layui\images\face\22.gif" />
+    <Content Include="static\layui\images\face\23.gif" />
+    <Content Include="static\layui\images\face\24.gif" />
+    <Content Include="static\layui\images\face\25.gif" />
+    <Content Include="static\layui\images\face\26.gif" />
+    <Content Include="static\layui\images\face\27.gif" />
+    <Content Include="static\layui\images\face\28.gif" />
+    <Content Include="static\layui\images\face\29.gif" />
+    <Content Include="static\layui\images\face\3.gif" />
+    <Content Include="static\layui\images\face\30.gif" />
+    <Content Include="static\layui\images\face\31.gif" />
+    <Content Include="static\layui\images\face\32.gif" />
+    <Content Include="static\layui\images\face\33.gif" />
+    <Content Include="static\layui\images\face\34.gif" />
+    <Content Include="static\layui\images\face\35.gif" />
+    <Content Include="static\layui\images\face\36.gif" />
+    <Content Include="static\layui\images\face\37.gif" />
+    <Content Include="static\layui\images\face\38.gif" />
+    <Content Include="static\layui\images\face\39.gif" />
+    <Content Include="static\layui\images\face\4.gif" />
+    <Content Include="static\layui\images\face\40.gif" />
+    <Content Include="static\layui\images\face\41.gif" />
+    <Content Include="static\layui\images\face\42.gif" />
+    <Content Include="static\layui\images\face\43.gif" />
+    <Content Include="static\layui\images\face\44.gif" />
+    <Content Include="static\layui\images\face\45.gif" />
+    <Content Include="static\layui\images\face\46.gif" />
+    <Content Include="static\layui\images\face\47.gif" />
+    <Content Include="static\layui\images\face\48.gif" />
+    <Content Include="static\layui\images\face\49.gif" />
+    <Content Include="static\layui\images\face\5.gif" />
+    <Content Include="static\layui\images\face\50.gif" />
+    <Content Include="static\layui\images\face\51.gif" />
+    <Content Include="static\layui\images\face\52.gif" />
+    <Content Include="static\layui\images\face\53.gif" />
+    <Content Include="static\layui\images\face\54.gif" />
+    <Content Include="static\layui\images\face\55.gif" />
+    <Content Include="static\layui\images\face\56.gif" />
+    <Content Include="static\layui\images\face\57.gif" />
+    <Content Include="static\layui\images\face\58.gif" />
+    <Content Include="static\layui\images\face\59.gif" />
+    <Content Include="static\layui\images\face\6.gif" />
+    <Content Include="static\layui\images\face\60.gif" />
+    <Content Include="static\layui\images\face\61.gif" />
+    <Content Include="static\layui\images\face\62.gif" />
+    <Content Include="static\layui\images\face\63.gif" />
+    <Content Include="static\layui\images\face\64.gif" />
+    <Content Include="static\layui\images\face\65.gif" />
+    <Content Include="static\layui\images\face\66.gif" />
+    <Content Include="static\layui\images\face\67.gif" />
+    <Content Include="static\layui\images\face\68.gif" />
+    <Content Include="static\layui\images\face\69.gif" />
+    <Content Include="static\layui\images\face\7.gif" />
+    <Content Include="static\layui\images\face\70.gif" />
+    <Content Include="static\layui\images\face\71.gif" />
+    <Content Include="static\layui\images\face\8.gif" />
+    <Content Include="static\layui\images\face\9.gif" />
+    <Content Include="static\layui\layui.all.js" />
+    <Content Include="static\layui\layui.js" />
+    <Content Include="static\layui\lay\modules\carousel.js" />
+    <Content Include="static\layui\lay\modules\code.js" />
+    <Content Include="static\layui\lay\modules\colorpicker.js" />
+    <Content Include="static\layui\lay\modules\element.js" />
+    <Content Include="static\layui\lay\modules\flow.js" />
+    <Content Include="static\layui\lay\modules\form.js" />
+    <Content Include="static\layui\lay\modules\jquery.js" />
+    <Content Include="static\layui\lay\modules\laydate.js" />
+    <Content Include="static\layui\lay\modules\layedit.js" />
+    <Content Include="static\layui\lay\modules\layer.js" />
+    <Content Include="static\layui\lay\modules\laypage.js" />
+    <Content Include="static\layui\lay\modules\laytpl.js" />
+    <Content Include="static\layui\lay\modules\mobile.js" />
+    <Content Include="static\layui\lay\modules\rate.js" />
+    <Content Include="static\layui\lay\modules\slider.js" />
+    <Content Include="static\layui\lay\modules\table.js" />
+    <Content Include="static\layui\lay\modules\transfer.js" />
+    <Content Include="static\layui\lay\modules\tree.js" />
+    <Content Include="static\layui\lay\modules\upload.js" />
+    <Content Include="static\layui\lay\modules\util.js" />
+    <Content Include="superuser.txt" />
+    <Content Include="templates\nav\left_nav.html" />
+    <Content Include="templates\nav\top_nav.html" />
+    <Content Include="templates\teacher\index.html" />
+    <Content Include="templates\test\Layui.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="apps\index\admin.py" />
+    <Compile Include="apps\index\apps.py" />
+    <Compile Include="apps\index\migrations\__init__.py" />
+    <Compile Include="apps\index\models.py" />
+    <Compile Include="apps\index\tests.py" />
+    <Compile Include="apps\index\views.py" />
+    <Compile Include="apps\index\__init__.py" />
+    <Compile Include="apps\student\admin.py" />
+    <Compile Include="apps\student\apps.py" />
+    <Compile Include="apps\student\migrations\__init__.py" />
+    <Compile Include="apps\student\student_models.py" />
+    <Compile Include="apps\student\tests.py" />
+    <Compile Include="apps\student\views.py" />
+    <Compile Include="apps\student\__init__.py" />
+    <Compile Include="apps\teacher\admin.py" />
+    <Compile Include="apps\teacher\apps.py" />
+    <Compile Include="apps\teacher\migrations\__init__.py" />
+    <Compile Include="apps\teacher\teacher_models.py" />
+    <Compile Include="apps\teacher\tests.py" />
+    <Compile Include="apps\teacher\views.py" />
+    <Compile Include="apps\teacher\__init__.py" />
+    <Compile Include="apps\__init__.py" />
+    <Compile Include="manage.py" />
+    <Compile Include="Mooc_video\settings.py" />
+    <Compile Include="Mooc_video\urls.py" />
+    <Compile Include="Mooc_video\wsgi.py" />
+    <Compile Include="Mooc_video\__init__.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="apps" />
+    <Folder Include="apps\index" />
+    <Folder Include="apps\index\migrations" />
+    <Folder Include="apps\student" />
+    <Folder Include="apps\student\migrations" />
+    <Folder Include="apps\teacher" />
+    <Folder Include="apps\teacher\migrations" />
+    <Folder Include="Mooc_video" />
+    <Folder Include="static\" />
+    <Folder Include="static\assets\" />
+    <Folder Include="static\assets\css" />
+    <Folder Include="static\assets\font-awesome\" />
+    <Folder Include="static\assets\font-awesome\fonts" />
+    <Folder Include="static\assets\fonts" />
+    <Folder Include="static\assets\js" />
+    <Folder Include="static\assets\js\dataTables" />
+    <Folder Include="static\assets\js\morris" />
+    <Folder Include="static\layui" />
+    <Folder Include="static\layui\css" />
+    <Folder Include="static\layui\css\modules" />
+    <Folder Include="static\layui\css\modules\laydate\" />
+    <Folder Include="static\layui\css\modules\laydate\default" />
+    <Folder Include="static\layui\css\modules\layer\" />
+    <Folder Include="static\layui\css\modules\layer\default" />
+    <Folder Include="static\layui\font" />
+    <Folder Include="static\layui\images\" />
+    <Folder Include="static\layui\images\face" />
+    <Folder Include="static\layui\lay\" />
+    <Folder Include="static\layui\lay\modules" />
+    <Folder Include="templates\" />
+    <Folder Include="templates\nav\" />
+    <Folder Include="templates\teacher\" />
+    <Folder Include="templates\test" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterpreterReference Include="Global|PythonCore|3.7" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.Django.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <AutoAssignPort>True</AutoAssignPort>
+          <UseCustomServer>True</UseCustomServer>
+          <CustomServerUrl>http://localhost</CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}" User="">
+        <WebProjectProperties>
+          <StartPageUrl>
+          </StartPageUrl>
+          <StartAction>CurrentPage</StartAction>
+          <AspNetDebugging>True</AspNetDebugging>
+          <SilverlightDebugging>False</SilverlightDebugging>
+          <NativeDebugging>False</NativeDebugging>
+          <SQLDebugging>False</SQLDebugging>
+          <ExternalProgram>
+          </ExternalProgram>
+          <StartExternalURL>
+          </StartExternalURL>
+          <StartCmdLineArguments>
+          </StartCmdLineArguments>
+          <StartWorkingDirectory>
+          </StartWorkingDirectory>
+          <EnableENC>False</EnableENC>
+          <AlwaysStartWebServerOnDebug>False</AlwaysStartWebServerOnDebug>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

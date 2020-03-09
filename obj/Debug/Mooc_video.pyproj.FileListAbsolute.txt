@@ -1,0 +1,2 @@
+C:\myProjects\pyFiles\Mooc_video\bin\Microsoft.PythonTools.WebRole.dll
+C:\myProjects\pyFiles\Mooc_video\bin\wfastcgi.py

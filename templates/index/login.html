@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE HTML>
+<html lang="zxx">
+
+<head>
+	<title>Home</title>
+	<!-- Meta-Tags -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<script>
+		addEventListener("load", function () {
+			setTimeout(hideURLbar, 0);
+		}, false);
+
+		function hideURLbar() {
+			window.scrollTo(0, 1);
+		}
+	</script>
+	<!-- //Meta-Tags -->
+	<!-- Stylesheets -->
+	<link href="{% static 'assets/css/login_style.css' %}" rel='stylesheet' type='text/css' />
+	<!--// Stylesheets -->
+	<!--online fonts-->
+	<link href="http://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+	<!--//online fonts-->
+</head>
+
+<body>
+	<h1>{{ user_type }} Login</h1>
+	<div class="w3ls-login box">
+		<img src="{% static 'assets/img/login_logo.png' %}" alt="logo_img" />
+		<!-- form starts here -->
+		<form action="/{{ user_type }}/" method="post">
+			<div class="agile-field-txt">
+				<input type="email" name="mobile" id="mobile" placeholder="Your mobile" required="" />
+			</div>
+			<div class="agile-field-txt">
+                <input type="password" name="password" id="password" placeholder="password" required="" />
+			</div>
+			<div class="w3ls-bot">
+				<input type="submit" value="LOGIN">
+			</div>
+		</form>
+	</div>
+	<!-- //form ends here -->
+	<!--copyright-->
+	<div class="copy-wthree">
+		<p>Copyright &copy; 2018.Company name All rights reserved.<a target="_blank" href="http://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a></p>
+	</div>
+	<!--//copyright-->
+</body>
+
+</html>

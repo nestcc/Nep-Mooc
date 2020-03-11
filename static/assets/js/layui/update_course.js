@@ -36,7 +36,7 @@ layui.use(['form', 'element', 'laydate'], function () {
                 console.log(form.val("cour_form"));
                 if (data['status'] === 'SUCCESS') {
                     layer.msg("OK!!!!", {
-                        time: 3000,
+                        time: 0,
                         btn: ['confirm'],
                         end: function () {
                             location.reload();
@@ -44,14 +44,14 @@ layui.use(['form', 'element', 'laydate'], function () {
                     });
                 } else {
                     layer.msg(data['status'], {
-                        time: 3000,
+                        time: 0,
                         btn: ['confirm']
                     })
                 }
             },
             error: function (xhr) {
                 layer.msg('发送数据时发送错误', {
-                    time: 3000,
+                    time: 0,
                     btn: ['confirm']
                 });
                 console.log(xhr);

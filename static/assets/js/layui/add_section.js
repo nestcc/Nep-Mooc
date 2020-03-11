@@ -53,7 +53,7 @@ layui.use(['form', 'upload'], function () {
             success: function (data) {
                 if (data['status'] === 'SUCCESS') {
                     layer.msg("OK!!!!", {
-                        time: 3000,
+                        time: 0,
                         btn: ['confirm'],
                         end: function () {
                             // location.reload();
@@ -61,14 +61,15 @@ layui.use(['form', 'upload'], function () {
                     });
                 } else {
                     layer.msg(data['status'], {
-                        time: 5000,
-                        btn: ['confirm']
+                        time: 0,
+                        btn: ['confirm'],
+
                     })
                 }
             },
             error: function (xhr) {
                 layer.msg("FAIL...", {
-                    time: 3000,
+                    time: 0,
                     btn: ['confirm'],
                 });
                 console.log(xhr);

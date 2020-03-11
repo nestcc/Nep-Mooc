@@ -1,0 +1,59 @@
+﻿{% load static %}
+<!DOCTYPE html>
+<html lang="zh">
+{% include 'nav/head.html' %}
+
+<body>
+<div class="layui-layout layui-layout-admin">
+
+    {#    TOP NAV#}
+    {% include 'nav/top_nav_stu.html' %}
+    {#    TOP NAV#}
+
+    {#    LEFT NAV#}
+    {% include 'nav/left_nav_stu.html' %}
+    {#    LEFT NAV#}
+
+    <div class="layui-body site-demo">
+        <div id="item_number" class="layui-hide">{{ item_number }}</div>
+        {% csrf_token %}
+        <fieldset class="layui-elem-field layui-field-title">
+            <legend>全部课程</legend>
+        </fieldset>
+
+        <div style="padding: 20px;">
+            <div class="layui-row layui-col-space15">
+                {% for each in cour_list %}
+                    <div class="layui-col-md12">
+                        <div class="layui-card" onclick="view_info({{ each.id }})">
+                            <div class="layui-card-header" style="background-color: #d2d2d2">
+                                {{ each.cour_name }}
+                            </div>
+                            <div class="layui-card-body" style="min-height: 75px">
+                                <img src="{{ each.cour_image }}" style="height: 70px; width: 100px; position: absolute">
+                                <div style="margin-left: 140px">简介:</div>
+                                <div style="margin-left: 140px">
+                                    {{ each.cour_description }}
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                {% endfor %}
+            </div>
+            <div id="lay-page" style="margin-right: 20px"></div>
+        </div>
+    </div>
+
+</div>
+
+<script src="{% static 'assets/js/jquery-1.10.2.js' %}"></script>
+<script src={% static 'layui/layui.all.js' %}></script>
+<script src="{% static 'assets/js/jquery.metisMenu.js' %}"></script>
+<script src="{% static 'assets/js/layui/nav.js' %}"></script>
+<script src="{% static 'assets/js/layui/stu_find_cour.js' %}"></script>
+
+</body>
+
+</html>

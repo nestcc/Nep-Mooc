@@ -1,27 +1,37 @@
-<nav class="navbar-default navbar-side" role="navigation">
-    <!--        <div id="sideNav" href=""><i class="fa fa-caret-right"></i></div>-->
-    <div class="sidebar-collapse">
-        <ul class="nav" id="main-menu">
+<div class="layui-side layui-bg-black">
+    <div class="layui-side-scroll">
 
-            <!--                variable-->
-            <li>
-                <a {{ class_my_course }} href={% url 'my_course' %}><i class="fa fa-table"></i> 我参加的课程</a>
-            </li>
-            <li>
-                <a {{ class_new_course }} href={% url 'stu_search_course' %}><i class="fa fa-plus-square"></i> 参加新课程</a>
-            </li>
-{#            <li>#}
-{#                <a {{ class_search_course }} href="/teacher/all_course"><i class="fa fa-book"></i> 全部课程</a>#}
-{#            </li>#}
-            <li>
-                <a {{ class_search_user }} href={% url 'stu_search_user' %}><i class="fa fa-users"></i> 寻找同学/教师</a>
-            </li>
-            <li>
-                <a {{ class_profile }} href={% url 'stu_profile' %}><i class="fa fa-id-card"></i> 我的资料</a>
-            </li>
+        <!-- LEFT NAV -->
+        <ul class="layui-nav layui-nav-tree layui-inline" lay-filter="left_nav">
+            {#            <li>#}
+            {#                <a {{ class_my_course }} href={% url 'my_course' %}><i class="fa fa-table"></i> 我参加的课程</a>#}
+            {#            </li>#}
+            {#            <li>#}
+            {#                <a {{ class_search_course }} href={% url 'stu_search_course' page=1 %}><i class="fa fa-plus-square"></i>#}
+            {#                    参加新课程</a>#}
+            {#            </li>#}
+            {#            <li>#}
+            {#                <a {{ class_search_user }} href={% url 'stu_search_user' %}><i class="fa fa-users"></i> 寻找同学/教师</a>#}
+            {#            </li>#}
+            {#            <li>#}
+            {#                <a {{ class_profile }} href={% url 'stu_profile' %}><i class="fa fa-id-card"></i> 我的资料</a>#}
+            {#            </li>#}
 
+            <li class="layui-nav-item {{ class_my_course }}">
+                <a href="{% url 'my_course' %}"><i class="fa fa-book"></i> 我参加的课程</a>
+            </li>
+            <li class="layui-nav-item {{ class_search_course }}">
+                <a href="{% url 'stu_search_course' page=1 %}"><i class="fa fa-plus-square"></i> 参加新课程</a>
+            </li>
+            <li class="layui-nav-item {{ class_search_user }}">
+                <a href="{% url 'stu_search_user' %}"><i class="fa fa-users"></i> 寻找同学/教师</a>
+            </li>
+            <li class="layui-nav-item {{ class_profile }}">
+                <a href="{% url 'stu_profile' %}"><i class="fa fa-id-card"></i> 我的资料</a>
+            </li>
         </ul>
+        <!-- LEFT NAV -->
 
     </div>
 
-</nav>
+</div>

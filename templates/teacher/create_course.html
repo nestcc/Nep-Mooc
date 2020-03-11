@@ -1,11 +1,11 @@
 {% load static %}
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-
+<html lang="zh">
 {% include 'nav/head.html' %}
 
 <body>
-<div id="wrapper" style="height: 600px;">
+<div class="layui-layout layui-layout-admin">
+
     {#    TOP NAV#}
     {% include 'nav/top_nav_tch.html' %}
     {#    TOP NAV#}
@@ -14,115 +14,75 @@
     {% include 'nav/left_nav_tch.html' %}
     {#    LEFT NAV#}
 
-    <div id="page-wrapper">
-        <div id="page-inner" style="height: 600px;">
-            <div class="row">
-                <div class="col-md-12">
-                    <h1 class="page-header">
-                        创建新课程
-                    </h1>
+    <div class="layui-body">
+        <div style="padding: 10px">
+            <fieldset class="layui-elem-field layui-field-title">
+                <legend>创建新课程</legend>
+            </fieldset>
+            <form class="layui-form" action={% url 'submit_course' %} method="POST">
+                {% csrf_token %}
+                <div class="layui-form-item">
+                    <label class="layui-form-label">名称</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="cour_name" id="cour_name" autocomplete="off"
+                               placeholder="请输入课程名称" class="layui-input" required>
+                    </div>
                 </div>
-            </div>
-            <!-- /. ROW  -->
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <form class="layui-form" action={% url 'submit_course' %} method="POST">
-                                        {% csrf_token %}
-                                        <div class="layui-form-item">
-                                            <label class="layui-form-label">名称</label>
-                                            <div class="layui-input-block">
-                                                <input type="text" name="cour_name" id="cour_name" autocomplete="off"
-                                                       placeholder="请输入课程名称" class="layui-input" required>
-                                            </div>
-                                        </div>
 
-                                        <div class="layui-form-item">
-                                            <label class="layui-form-label">日期</label>
-                                            <div class="layui-input-block">
-                                                <input type="text" name="cour_range" id="cour_range"
-                                                       placeholder="年-月-日 ~ 年-月-日"
-                                                       autocomplete="off" class="layui-input" required>
-                                            </div>
-                                        </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">日期</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="cour_range" id="cour_range"
+                               placeholder="年-月-日 ~ 年-月-日"
+                               autocomplete="off" class="layui-input" required>
+                    </div>
+                </div>
 
-                                        <div class="layui-form-item">
-                                            <label class="layui-form-label">类型</label>
-                                            <div class="layui-input-block">
-                                                <select name="cour_type" lay-filter="" required>
-                                                    <option value=""></option>
-                                                    <option value="0">数学</option>
-                                                    <option value="1">化学</option>
-                                                    <option value="2">物理</option>
-                                                    <option value="3">地理</option>
-                                                    <option value="4">信息技术</option>
-                                                    <option value="5">外语</option>
-                                                    <option value="6">政治</option>
-                                                    <option value="7">历史</option>
-                                                    <option value="8">医学</option>
-                                                    <option value="9">法学</option>
-                                                </select>
-                                            </div>
-                                        </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">类型</label>
+                    <div class="layui-input-block">
+                        <select name="cour_type" lay-filter="" required>
+                            <option value=""></option>
+                            <option value="0">数学</option>
+                            <option value="1">化学</option>
+                            <option value="2">物理</option>
+                            <option value="3">地理</option>
+                            <option value="4">信息技术</option>
+                            <option value="5">外语</option>
+                            <option value="6">政治</option>
+                            <option value="7">历史</option>
+                            <option value="8">医学</option>
+                            <option value="9">法学</option>
+                        </select>
+                    </div>
+                </div>
 
-                                        <div class="layui-form-item layui-form-text">
-                                            <label class="layui-form-label">简介</label>
-                                            <div class="layui-input-block">
+                <div class="layui-form-item layui-form-text">
+                    <label class="layui-form-label">简介</label>
+                    <div class="layui-input-block">
                                                 <textarea placeholder="请输入内容" name="cour_description"
                                                           class="layui-textarea" required></textarea>
-                                            </div>
-                                        </div>
-
-                                        <div class="layui-form-item">
-                                            <div class="layui-input-block">
-                                                <button type="submit" class="layui-btn">立即提交
-                                                </button>
-                                                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                    <p>{{ rlt }}</p>
-                                </div>
-                                <!-- /.col-lg-6 (nested) -->
-                            </div>
-                            <!-- /.row (nested) -->
-                        </div>
-                        <!-- /.panel-body -->
                     </div>
-                    <!-- /.panel -->
                 </div>
-                <!-- /.col-lg-12 -->
-            </div>
+
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <button type="submit" class="layui-btn">立即提交
+                        </button>
+                        <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                    </div>
+                </div>
+            </form>
+            <p>{{ rlt }}</p>
         </div>
-        <!-- /. PAGE INNER  -->
     </div>
-    <!-- /. PAGE WRAPPER  -->
 </div>
-<!-- /. WRAPPER  -->
-<!-- JS Scripts-->
-<!-- jQuery Js -->
+
 <script src="{% static 'assets/js/jquery-1.10.2.js' %}"></script>
-<!-- Bootstrap Js -->
-<script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
-
-<!-- Metis Menu Js -->
 <script src="{% static 'assets/js/jquery.metisMenu.js' %}"></script>
-<!-- Morris Chart Js -->
-<script src="{% static 'assets/js/morris/raphael-2.1.0.min.js' %}"></script>
-<script src="{% static 'assets/js/morris/morris.js' %}"></script>
-
-
-<script src="{% static 'assets/js/easypiechart.js' %}"></script>
-<script src="{% static 'assets/js/easypiechart-data.js' %}"></script>
-
-<!-- Custom Js -->
+<script src="{% static 'layui/layui.all.js' %}"></script>
 <script src="{% static 'assets/js/custom-scripts.js' %}"></script>
-
-<script src={% static 'layui/layui.js' %}></script>
-
+<script src="{% static 'assets/js/layui/nav.js' %}"></script>
 <script src={% static 'assets/js/layui/create_course.js' %}></script>
 
 </body>

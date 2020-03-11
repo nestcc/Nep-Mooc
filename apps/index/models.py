@@ -58,8 +58,8 @@ class NepSection(models.Model):
 
 
 class NepLearnStatus(models.Model):
-    id_student = models.ForeignKey('student.NepStudent', models.CASCADE)
-    id_course = models.ForeignKey(NepCourse, models.CASCADE)
+    student = models.ForeignKey('student.NepStudent', models.CASCADE)
+    course = models.ForeignKey(NepCourse, models.CASCADE)
     percentage = models.IntegerField(default=0)
     start_time = models.DateTimeField()
     last_time = models.DateTimeField(null=True)

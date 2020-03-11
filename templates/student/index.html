@@ -1,11 +1,10 @@
 ﻿{% load static %}
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-
+<html lang="zh">
 {% include 'nav/head.html' %}
 
 <body>
-<div id="wrapper">
+<div class="layui-layout layui-layout-admin">
 
     {#    TOP NAV#}
     {% include 'nav/top_nav_stu.html' %}
@@ -15,29 +14,18 @@
     {% include 'nav/left_nav_stu.html' %}
     {#    LEFT NAV#}
 
-    <div id="page-wrapper">
+    <div class="layui-body">
+        <div style="padding: 10px">
 
+        </div>
     </div>
 </div>
-<!-- /. WRAPPER  -->
-<!-- JS Scripts-->
-<!-- jQuery Js -->
+
 <script src="{% static 'assets/js/jquery-1.10.2.js' %}"></script>
-<!-- Bootstrap Js -->
-<script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
-
-<!-- Metis Menu Js -->
 <script src="{% static 'assets/js/jquery.metisMenu.js' %}"></script>
-<!-- Morris Chart Js -->
-<script src="{% static 'assets/js/morris/raphael-2.1.0.min.js' %}"></script>
-<script src="{% static 'assets/js/morris/morris.js' %}"></script>
-
-
-<script src="{% static 'assets/js/easypiechart.js' %}"></script>
-<script src="{% static 'assets/js/easypiechart-data.js' %}"></script>
-
-<!-- Custom Js -->
+<script src="{% static 'layui/layui.all.js' %}"></script>
 <script src="{% static 'assets/js/custom-scripts.js' %}"></script>
+<script src="{% static 'assets/js/layui/nav.js' %}"></script>
 </body>
 
 </html>

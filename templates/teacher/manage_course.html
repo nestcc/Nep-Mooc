@@ -1,11 +1,11 @@
 {% load static %}
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-
+<html lang="zh">
 {% include 'nav/head.html' %}
 
 <body>
-<div id="wrapper" style="height: 600px;">
+<div class="layui-layout layui-layout-admin">
+
     {#    TOP NAV#}
     {% include 'nav/top_nav_tch.html' %}
     {#    TOP NAV#}
@@ -14,36 +14,39 @@
     {% include 'nav/left_nav_tch.html' %}
     {#    LEFT NAV#}
 
-    <div id="page-wrapper">
-        <table id="course_list" lay-filter="course">
-            <thead>
-            <tr>
-                <td lay-data="{field: 'id', width: 70, title: 'id', sort: true}"></td>
-                <td lay-data="{field: 'name', width: 110, title: '课程名称'}"></td>
-                <td lay-data="{field: 'type', width: 110, title: '课程类型'}"></td>
-                <td lay-data="{field: 'create', width: 230, title: '创建日期', sort: true}"></td>
-                <td lay-data="{field: 'start', width: 200, title: '开始日期', sort: true}"></td>
-                <td lay-data="{field: 'end', width: 200, title: '结束日期', sort: true}"></td>
-                <td lay-data="{field: 'learn_num', width: 130, title: '学习人数', sort: true}"></td>
-                <td lay-data="{field: 'avilable', title: '是否激活'}"></td>
-            </tr>
-            </thead>
-            <tbody>
-            {% for each in cour_list %}
+    <div class="layui-body">
+        <div style="padding: 10px">
+            <table id="course_list" lay-filter="course">
+                <thead>
                 <tr>
-                    <td>{{ each.id }}</td>
-                    <td>{{ each.cour_name }}</td>
-                    <td>{{ each.get_cour_type_display }}</td>
-                    <td>{{ each.cour_create_time }}</td>
-                    <td>{{ each.cour_start }}</td>
-                    <td>{{ each.cour_end }}</td>
-                    <td>0</td>
-                    <td>{{ each.cour_avilable }}</td>
+                    <td lay-data="{field: 'id', width: 70, title: 'id', sort: true}"></td>
+                    <td lay-data="{field: 'name', width: 110, title: '课程名称'}"></td>
+                    <td lay-data="{field: 'type', width: 110, title: '课程类型'}"></td>
+                    <td lay-data="{field: 'create', width: 230, title: '创建日期', sort: true}"></td>
+                    <td lay-data="{field: 'start', width: 200, title: '开始日期', sort: true}"></td>
+                    <td lay-data="{field: 'end', width: 200, title: '结束日期', sort: true}"></td>
+                    <td lay-data="{field: 'learn_num', width: 130, title: '学习人数', sort: true}"></td>
+                    <td lay-data="{field: 'avilable', title: '是否激活'}"></td>
                 </tr>
-            {% endfor %}
-            </tbody>
+                </thead>
+                <tbody>
+                {% for each in cour_list %}
+                    <tr>
+                        <td>{{ each.id }}</td>
+                        <td>{{ each.cour_name }}</td>
+                        <td>{{ each.get_cour_type_display }}</td>
+                        <td>{{ each.cour_create_time }}</td>
+                        <td>{{ each.cour_start }}</td>
+                        <td>{{ each.cour_end }}</td>
+                        <td>0</td>
+                        <td>{{ each.cour_avilable }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
 
-        </table>
+            </table>
+        </div>
+
         <!-- /. PAGE INNER  -->
     </div>
     <!-- /. PAGE WRAPPER  -->
@@ -51,28 +54,14 @@
 <!-- /. WRAPPER  -->
 <!-- JS Scripts-->
 <!-- jQuery Js -->
+
 <script src="{% static 'assets/js/jquery-1.10.2.js' %}"></script>
-<!-- Bootstrap Js -->
-<script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
-
-<!-- Metis Menu Js -->
 <script src="{% static 'assets/js/jquery.metisMenu.js' %}"></script>
-<!-- Morris Chart Js -->
-<script src="{% static 'assets/js/morris/raphael-2.1.0.min.js' %}"></script>
-<script src="{% static 'assets/js/morris/morris.js' %}"></script>
-
-
-<script src="{% static 'assets/js/easypiechart.js' %}"></script>
-<script src="{% static 'assets/js/easypiechart-data.js' %}"></script>
-
-<!-- Custom Js -->
+<script src="{% static 'layui/layui.all.js' %}"></script>
 <script src="{% static 'assets/js/custom-scripts.js' %}"></script>
-
-<script src={% static 'layui/layui.js' %}></script>
-
-{% csrf_token %}
+<script src="{% static 'assets/js/layui/nav.js' %}"></script>
 <script src={% static 'assets/js/layui/table.js' %}></script>
-
+{% csrf_token %}
 </body>
 
 </html>

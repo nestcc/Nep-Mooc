@@ -23,7 +23,7 @@ def index(request):
 
 def create_course(request):
     content = {'class_manage_course': '',
-               'class_create_course': 'class=active-menu',
+               'class_create_course': 'layui-this',
                'class_search_course': '',
                'class_search_user': '',
                'class_profile': '', }
@@ -35,14 +35,14 @@ def user_profile(request):
                'class_create_course': '',
                'class_search_course': '',
                'class_search_user': '',
-               'class_profile': 'class=active-menu'}
+               'class_profile': 'layui-this'}
     return render(request, 'teacher/index.html', content)
 
 
 def course_list(request):
     #   change teacher id
     cour_list = NepCourse.objects.filter(cour_create_tch=1)
-    content = {'class_manage_course': 'class=active-menu',
+    content = {'class_manage_course': 'layui-this',
                'class_create_course': '',
                'class_search_course': '',
                'class_search_user': '',
@@ -54,7 +54,7 @@ def course_list(request):
 def search_course(request):
     content = {'class_manage_course': '',
                'class_create_course': '',
-               'class_search_course': 'class=active-menu',
+               'class_search_course': 'layui-this',
                'class_search_user': '',
                'class_profile': ''}
     return render(request, 'teacher/index.html', content)
@@ -64,7 +64,7 @@ def search_user(request):
     content = {'class_manage_course': '',
                'class_create_course': '',
                'class_search_course': '',
-               'class_search_user': 'class=active-menu',
+               'class_search_user': 'layui-this',
                'class_profile': ''}
     return render(request, 'teacher/index.html', content)
 
@@ -81,7 +81,7 @@ def course_info(request, id):
     this_course = NepCourse.objects.get(id=id)
     cour_date = str(this_course.cour_start) + ' - ' + str(this_course.cour_end)
     option_num = 'option_' + str(this_course.cour_type)
-    content = {'class_manage_course': 'class=active-menu',
+    content = {'class_manage_course': 'layui-this',
                'class_create_course': '',
                'class_search_course': '',
                'class_search_user': '',
@@ -106,7 +106,7 @@ def update_course(request):
 
 
 def add_section_view(request, id, name):
-    content = {'class_manage_course': 'class=active-menu',
+    content = {'class_manage_course': 'layui-this',
                'class_create_course': '',
                'class_search_course': '',
                'class_search_user': '',
@@ -119,8 +119,8 @@ def add_section_view(request, id, name):
 
 def add_setion(request):
     print(request.POST)
-    NewSection = Section(request.POST)
-    json_return = NewSection.submit()
+    new_section = Section(request.POST)
+    json_return = new_section.submit()
     print(json_return)
     return JsonResponse(json_return)
 

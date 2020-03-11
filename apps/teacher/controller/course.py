@@ -24,14 +24,14 @@ class Course:
             self.CourseObj.cour_create_time = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())
 
         except Exception as ecpt:
-            self.submit_return['OBJ_INIT_ERROR'] = ecpt
+            self.submit_return['OBJ_INIT_ERROR'] = repr(ecpt)
 
     def submit(self):
         try:
             self.CourseObj.save()
             self.submit_return['status'] = 'SUCCESS'
         except Exception as ecpt:
-            self.submit_return['OBJ_SUBMIT_ERROR'] = ecpt
+            self.submit_return['OBJ_SUBMIT_ERROR'] = repr(ecpt)
 
         return self.submit_return
 

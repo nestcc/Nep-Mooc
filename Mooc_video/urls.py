@@ -29,10 +29,13 @@ urlpatterns = [
     path('student/', include(
         [path('index/', stuViews.index, name='stu_index'),
          path('my_course/', stuViews.my_course, name='my_course'),
-         path('search_course/', stuViews.search_course, name='stu_search_course'),
+         path('search_course/<int:page>/', stuViews.search_course, name='stu_search_course'),
          path('search_user/', stuViews.search_user, name='stu_search_user'),
          path('profile/', stuViews.profile, name='stu_profile'),
-         path('play_video/', stuViews.play_videos, name='stu_play_videos')]
+         path('play_video/', stuViews.play_videos, name='stu_play_videos'),
+         path('show_cour_info/<int:id>/', stuViews.show_cour_info),
+         path('join_course/', stuViews.join_course)
+         ]
     )),
 
     path('index/', include(

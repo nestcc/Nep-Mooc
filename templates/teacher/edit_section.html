@@ -5,7 +5,6 @@
     {% include 'nav/head.html' %}
 </head>
 
-
 <body>
 <div class="layui-layout layui-layout-admin">
 
@@ -20,17 +19,18 @@
     <div class="layui-body">
         <div style="padding: 10px">
             <fieldset class="layui-elem-field layui-field-title">
-                <legend>添加{{ cour_name }}的章节</legend>
+                <legend>更改{{ sect_obj.sect_tag }}.{{ sect_obj.sect_name }}章节</legend>
             </fieldset>
 
             <form class="layui-form" id="sect_form" lay-filter="sect_form">
                 {% csrf_token %}
 
+                <input class="layui-hide" name="cour_id" value="{{ sect_obj.sect_cour.id }}">
                 <div class="layui-form-item">
                     <label class="layui-form-label">名称</label>
                     <div class="layui-input-block">
                         <input type="text" name="sect_name" id="sect_name" autocomplete="off"
-                               placeholder="请输入章节名称（必需）" class="layui-input" value="{{ sect_name }}"
+                               placeholder="请输入章节名称（必需）" class="layui-input" value="{{ sect_obj.sect_name }}"
                                required>
                     </div>
                 </div>
@@ -39,17 +39,15 @@
                     <label class="layui-form-label">内容</label>
                     <div class="layui-input-block">
                         <textarea placeholder="请输入内容" name="sect_text"
-                                  id="sect_text">{{ sect_text }}</textarea>
+                                  id="sect_text">{{ sect_obj.sect_text }}</textarea>
                     </div>
                 </div>
 
                 <div class="layui-form-item">
                     <label class="layui-form-label">课程序号</label>
-                    {#                                            {% csrf_token %}#}
-
                     <div class="layui-input-inline">
-                        <input type="text" name="sect_tag" id="sect_tag" autocomplete="off"
-                               placeholder="课程序号（必需）" class="layui-input" value=""
+                        <input type="text" id="sect_tag" name="sect_tag" autocomplete="off"
+                               placeholder="课程序号（必需）" class="layui-input" value="{{ sect_obj.sect_tag }}"
                                required>
                     </div>
 
@@ -58,9 +56,6 @@
 
                 <div class="layui-form-item">
                     <div class="layui-input-block">
-                        <button type="button" class="layui-btn" id="upload_btn">
-                            <i class="layui-icon">&#xe67c;</i>上传视频文件
-                        </button>
                         <button lay-submit="" class="layui-btn" lay-filter="submit_btn">立即提交
                         </button>
                         <button type="reset" class="layui-btn layui-btn-primary">重置</button>
@@ -69,6 +64,17 @@
                 </div>
 
             </form>
+
+            <button type="button" class="layui-btn" id="reupload_btn" style="margin-left: 110px">
+                <i class="layui-icon">&#xe67c;</i>重新上传视频文件
+            </button>
+            <div class="layui-col-md12" style="margin-top: 20px">
+                <button class="layui-btn layui-btn-danger" style="margin-left: 110px" id="del">
+                    删除课程
+                </button>
+                一旦删除不可恢复
+            </div>
+
         </div>
     </div>
 </div>
@@ -79,7 +85,7 @@
 <script src="{% static 'assets/js/custom-scripts.js' %}"></script>
 <script src="{% static 'assets/js/layui/nav.js' %}"></script>
 <script src={% static 'tinymce/tinymce.js' %}></script>
-<script src={% static 'assets/js/layui/add_section.js' %}></script>
+<script src={% static 'assets/js/layui/update_section.js' %}></script>
 </body>
 
 </html>

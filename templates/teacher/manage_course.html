@@ -1,7 +1,9 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="zh">
-{% include 'nav/head.html' %}
+<head>
+    {% include 'nav/head.html' %}
+</head>
 
 <body>
 <div class="layui-layout layui-layout-admin">
@@ -19,14 +21,13 @@
             <table id="course_list" lay-filter="course">
                 <thead>
                 <tr>
-                    <td lay-data="{field: 'id', width: 70, title: 'id', sort: true}"></td>
-                    <td lay-data="{field: 'name', width: 110, title: '课程名称'}"></td>
+                    <td lay-data="{field: 'id', width: 70, title: 'id', sort: true, hide: true}"></td>
+                    <td lay-data="{field: 'name', width: 200, title: '课程名称'}"></td>
                     <td lay-data="{field: 'type', width: 110, title: '课程类型'}"></td>
                     <td lay-data="{field: 'create', width: 230, title: '创建日期', sort: true}"></td>
                     <td lay-data="{field: 'start', width: 200, title: '开始日期', sort: true}"></td>
                     <td lay-data="{field: 'end', width: 200, title: '结束日期', sort: true}"></td>
-                    <td lay-data="{field: 'learn_num', width: 130, title: '学习人数', sort: true}"></td>
-                    <td lay-data="{field: 'avilable', title: '是否激活'}"></td>
+                    <td lay-data="{field: 'avilable', title: '是否激活', sort: true}"></td>
                 </tr>
                 </thead>
                 <tbody>
@@ -38,7 +39,6 @@
                         <td>{{ each.cour_create_time }}</td>
                         <td>{{ each.cour_start }}</td>
                         <td>{{ each.cour_end }}</td>
-                        <td>0</td>
                         <td>{{ each.cour_avilable }}</td>
                     </tr>
                 {% endfor %}
@@ -47,20 +47,14 @@
             </table>
         </div>
 
-        <!-- /. PAGE INNER  -->
     </div>
-    <!-- /. PAGE WRAPPER  -->
 </div>
-<!-- /. WRAPPER  -->
-<!-- JS Scripts-->
-<!-- jQuery Js -->
 
 <script src="{% static 'assets/js/jquery-1.10.2.js' %}"></script>
 <script src="{% static 'assets/js/jquery.metisMenu.js' %}"></script>
 <script src="{% static 'layui/layui.all.js' %}"></script>
-<script src="{% static 'assets/js/custom-scripts.js' %}"></script>
 <script src="{% static 'assets/js/layui/nav.js' %}"></script>
-<script src={% static 'assets/js/layui/table.js' %}></script>
+<script src={% static 'assets/js/layui/course_table.js' %}></script>
 {% csrf_token %}
 </body>
 

@@ -36,7 +36,7 @@ class NepCourse(models.Model):
     cour_description = models.TextField(null=True)     #
     cour_univ = models.ForeignKey('index.NepUniversity', models.SET_NULL, null=True)   #
     cour_create_time = models.DateTimeField(null=True)  #
-    cour_image = models.ImageField(null=True, height_field=92, width_field=182)
+    cour_image = models.ImageField(null=True)
 
     class Meta:
         managed = True
@@ -46,10 +46,10 @@ class NepCourse(models.Model):
 class NepSection(models.Model):
     sect_name = models.CharField(max_length=50)
     sect_text = models.CharField(max_length=500, null=True)
-    sect_media = models.CharField(max_length=50, null=True)
+    sect_media = models.CharField(max_length=200, null=True)
     sect_cour = models.ForeignKey(NepCourse, models.CASCADE)
     sect_teacher = models.ForeignKey('teacher.NepTeacher', models.CASCADE)
-    sect_tag = models.CharField(max_length=20, default='section_1-1', null=True)
+    sect_tag = models.CharField(max_length=20, default='1-1')
     sect_create_time = models.DateTimeField(null=True)
 
     class Meta:
@@ -67,3 +67,17 @@ class NepLearnStatus(models.Model):
     class Meta:
         managed = True
         db_table = 'nep_learn_status'
+
+
+class NepSectionStatus(models.Model):
+    student = models.ForeignKey('student.NepStudent', models.CASCADE)
+    course = models.ForeignKey(NepCourse, models.CASCADE)
+    section = models.ForeignKey(NepSection, models.CASCADE)
+    start_time = models.DateTimeField(null=True)
+    last_time = models.DateTimeField(null=True)
+    completed = models.BooleanField(default=False)
+    view_time = models.TimeField(null=True)
+
+    class Meta:
+        managed = True
+        db_table = 'nep_section_status'

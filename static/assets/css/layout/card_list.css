@@ -1,0 +1,47 @@
+.sect-item {
+    cursor: Pointer;
+}
+
+.search-box {
+    margin: 0 14px;
+}
+
+.search-box i {
+    cursor: Pointer;
+    position: absolute;
+    padding: 10px;
+}
+
+.search-box .layui-input {
+    text-indent: 20px;
+}
+
+.cour-item {
+    cursor: Pointer;
+}
+
+.cour-item .layui-card-body {
+    min-height: 75px;
+}
+
+.cour-item .layui-card-body img {
+    height: 70px;
+    width: 100px;
+    position: absolute;
+}
+
+.cour-item .layui-card-body p {
+    text-indent: 140px;
+}
+
+.cour-item .layui-progress {
+    margin-top: 10px;
+}
+
+.sect-item:hover {
+    transform: scale(1.01, 1.01);
+}
+
+.cour-item:hover {
+    transform: scale(1.01, 1.01);
+}

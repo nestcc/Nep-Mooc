@@ -1,7 +1,11 @@
 ﻿{% load static %}
 <!DOCTYPE html>
 <html lang="zh">
-{% include 'nav/head.html' %}
+<head>
+    {% include 'nav/head.html' %}
+    <link rel="stylesheet" href="{% static 'assets/css/layout/index_page.css' %}"/>
+</head>
+
 
 <body>
 <div class="layui-layout layui-layout-admin">
@@ -14,18 +18,94 @@
     {% include 'nav/left_nav_tch.html' %}
     {#    LEFT NAV#}
 
-    <div class="layui-body">
-        <div style="padding: 10px">
+    <div class="layui-body layui-bg-gray">
+        <div class="layui-fluid">
+            <div class="layui-row layui-col-space12">
+                <div class="layui-col-md2">
+                    <div class="layui-card top-card">
+                        <div class="layui-card-header">
+                            个人数据
+                        </div>
+                        <div class="layui-card-body self-data">
+                            <p>
+                                共发布
+                                <span>{{ num_cour }}</span>
+                                个课程
+                            </p>
 
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-col-md4">
+                    <div class="layui-card top-card panel-card">
+                        <div class="layui-card-header">
+                            快捷方式
+                        </div>
+                        <div class="layui-card-body">
+                            <ul class="layui-row layui-col-space10">
+                                <li class="layui-col-md3">
+                                    <a href="{% url 'tch_create_course' %}">
+                                        <i class="layui-icon layui-icon-add-1"></i>
+                                        <cite>创建课程</cite>
+                                    </a>
+                                </li>
+                                <li class="layui-col-md3">
+                                    <a href="{% url 'tch_search_user' %}">
+                                        <i class="layui-icon layui-icon-search"></i>
+                                        <cite>查找用户</cite>
+                                    </a>
+                                </li>
+                                <li class="layui-col-md3">
+                                    <a href="{% url 'tch_course_list' %}">
+                                        <i class="layui-icon layui-icon-list"></i>
+                                        <cite>我的课程</cite>
+                                    </a>
+                                </li>
+                                <li class="layui-col-md3">
+                                    <a href="{% url 'tch_profile' %}">
+                                        <i class="layui-icon layui-icon-user"></i>
+                                        <cite>个人信息</cite>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="layui-col-md6">
+                    <div class="layui-card top-card">
+                        <div class="layui-card-header">
+                            没想好拿来干什么
+                        </div>
+                        <div class="layui-card-body">
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="layui-col-md12">
+                    <div class="layui-card">
+                        <div class="layui-card-header">
+                            课程情况
+                        </div>
+                        <div class="layui-card-body">
+                            <div class="course-data" id="course_chart"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+
     </div>
 </div>
 
 <script src="{% static 'assets/js/jquery-1.10.2.js' %}"></script>
 <script src="{% static 'assets/js/jquery.metisMenu.js' %}"></script>
 <script src="{% static 'layui/layui.all.js' %}"></script>
-<script src="{% static 'assets/js/custom-scripts.js' %}"></script>
+<script src="{% static 'echart/echarts.js' %}"></script>
+<script src="{% static 'assets/js/layui/tch_index_chart.js' %}"></script>
 <script src="{% static 'assets/js/layui/nav.js' %}"></script>
+
 
 </body>
 

@@ -1,0 +1,63 @@
+﻿{% load static %}
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    {% include 'nav/head.html' %}
+</head>
+
+<body>
+<div class="layui-layout layui-layout-admin">
+
+    {#    TOP NAV#}
+    {% include 'nav/top_nav_stu.html' %}
+    {#    TOP NAV#}
+
+    {#    LEFT NAV#}
+    {% include 'nav/left_nav_stu.html' %}
+    {#    LEFT NAV#}
+
+    <div class="layui-body layui-bg-gray">
+        {% csrf_token %}
+        <div style="padding: 10px">
+            <fieldset class="layui-elem-field layui-field-title">
+                <legend>[{{ sect_tag }}]{{ sect_name }}</legend>
+            </fieldset>
+        </div>
+        <div class="layui-row layui-col-space15" style="padding: 20px">
+            <div class="layui-col-md12">
+                <div class="layui-card">
+                    <div class="layui-card-header">
+                        课程内容
+                    </div>
+                    <div class="layui-card-body">
+                        {% autoescape off %}
+                            {{ sect_text }}
+                        {% endautoescape %}
+                    </div>
+                </div>
+
+                <div class="layui-card">
+                    <div class="layui-card-header">
+                        课程资源
+                    </div>
+                    <div class="layui-card-body">
+                        <p align="center">
+                            <video id="sect_video" width="800" controls="controls">
+                                <source src="/static/{{ sect_media }}" type="video/mp4"/>
+                            </video>
+                        </p>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="{% static 'assets/js/jquery-1.10.2.js' %}"></script>
+<script src="{% static 'layui/layui.all.js' %}"></script>
+<script src="{% static 'assets/js/layui/learn.js' %}"></script>
+</body>
+
+</html>

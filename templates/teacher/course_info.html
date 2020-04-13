@@ -1,7 +1,11 @@
 ﻿{% load static %}
 <!DOCTYPE html>
 <html lang="zh">
-{% include 'nav/head.html' %}
+<head>
+    {% include 'nav/head.html' %}
+    <link rel="stylesheet" href="{% static 'assets/css/cour_info.css' %}">
+</head>
+
 
 <body>
 <div class="layui-layout layui-layout-admin">
@@ -14,101 +18,240 @@
     {% include 'nav/left_nav_tch.html' %}
     {#    LEFT NAV#}
 
-    <div class="layui-body">
-        <div style="padding: 10px">
-            <fieldset class="layui-elem-field layui-field-title">
-                <legend>课程详情</legend>
-            </fieldset>
-            <form class="layui-form" id="cour_form" lay-filter="cour_form">
-                {% csrf_token %}
-                <div class="layui-hide">
-                    <label class="layui-form-label">id</label>
-                    <div class="layui-input-block">
-                        <input type="text" name="cour_id" id="cour_id" class="layui-input" value="{{ cour_id }}">
+    <div class="layui-body layui-bg-gray">
+        <div class="layui-card">
+            <div class="layui-card-header">课程详情 / {{ cour_name }}</div>
+        </div>
+
+        <div class="layui-fluid">
+            <div class="layui-row layui-col-space12">
+                <div class="layui-col-md3">
+                    <div class="layui-card">
+                        <div class="layui-card-header">
+                            章节数
+                        </div>
+                        <div class="layui-card-body">
+                            <p class="in-card-body">
+                                共
+                                <span>
+                                {{ sect_number }}
+                                </span>
+                                章节
+                            </p>
+                        </div>
                     </div>
                 </div>
 
-                <div class="layui-form-item">
-                    <label abel class="layui-form-label">名称</label>
-                    <div class="layui-input-block">
-                        <input type="text" name="cour_name" id="cour_name" autocomplete="off"
-                               placeholder="请输入课程名称" class="layui-input" value="{{ cour_name }}" required>
+                <div class="layui-col-md3">
+                    <div class="layui-card">
+                        <div class="layui-card-header">
+                            学习人数
+                        </div>
+                        <div class="layui-card-body">
+                            <p class="in-card-body">
+                                共
+                                <span>
+                                {{ stu_number }}
+                                </span>
+                                人学习
+                            </p>
+                        </div>
+
                     </div>
                 </div>
 
-                <div class="layui-form-item">
-                    <label class="layui-form-label">日期</label>
-                    <div class="layui-input-block">
-                        <input type="text" name="cour_range" id="cour_range"
-                               placeholder="年-月-日 ~ 年-月-日"
-                               autocomplete="off" class="layui-input" value="{{ cour_date }}" required>
+                <div class="layui-col-md3">
+                    <div class="layui-card">
+                        <div class="layui-card-header">
+                            封面图片
+                        </div>
+                        <div class="layui-card-body" style="height: 110px">
+                            {% csrf_token %}
+                            <p class="select_img">
+                                <img src="/static/media/{{ cour_obj.cour_image }}" style="height: 73px; width: 100px">
+                            </p>
+                            <div class="select_img_btn">
+                                <button type="button" class="layui-btn" id="upload_image">
+                                    <i class="layui-icon">&#xe67c;</i>上传封面
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-col-md3">
+                    <div class="layui-card">
+                        <div class="layui-card-header">
+                            激活状态
+                        </div>
+                        <div class="layui-card-body">
+                            <p class="in-card-body">
+                                <span style="color: {{ cour_status_color }}">
+                                    {{ cour_status }}
+                                </span>
+                            </p>
+                        </div>
                     </div>
                 </div>
 
-                <div class="layui-form-item">
-                    <label class="layui-form-label">类型</label>
-                    <div class="layui-input-block">
-                        <select name="cour_type" required>
-                            <option value=""></option>
-                            <option value="0" {{ option_0 }}>数学</option>
-                            <option value="1" {{ option_1 }}>化学</option>
-                            <option value="2" {{ option_2 }}>物理</option>
-                            <option value="3" {{ option_3 }}>地理</option>
-                            <option value="4" {{ option_4 }}>信息技术</option>
-                            <option value="5" {{ option_5 }}>外语</option>
-                            <option value="6" {{ option_6 }}>政治</option>
-                            <option value="7" {{ option_7 }}>历史</option>
-                            <option value="8" {{ option_8 }}>医学</option>
-                            <option value="9" {{ option_9 }}>法学</option>
-                            <option value="10" {{ option_10 }}>经济学</option>
-                        </select>
-                    </div>
-                </div>
 
-                <div class="layui-form-item layui-form-text">
-                    <label class="layui-form-label">简介</label>
-                    <div class="layui-input-block">
+                <div class="layui-col-md12">
+                    <div class="layui-card">
+                        <div class="layui-card-header">
+                            课程详情
+                        </div>
+                        <div class="layui-card-body">
+                            <form class="layui-form" id="cour_form" lay-filter="cour_form">
+                                {% csrf_token %}
+                                <div class="layui-hide">
+                                    <label class="layui-form-label">id</label>
+                                    <div class="layui-input-block">
+                                        <input type="text" name="cour_id" id="cour_id" class="layui-input"
+                                               value="{{ cour_obj.id }}">
+                                    </div>
+                                </div>
+
+                                <div class="layui-form-item">
+                                    <label abel class="layui-form-label">名称</label>
+                                    <div class="layui-input-block">
+                                        <input type="text" name="cour_name" id="cour_name" autocomplete="off"
+                                               placeholder="请输入课程名称" class="layui-input" value="{{ cour_name }}"
+                                               required>
+                                    </div>
+                                </div>
+
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label">日期</label>
+                                    <div class="layui-input-block">
+                                        <input type="text" name="cour_range" id="cour_range"
+                                               placeholder="年-月-日 ~ 年-月-日"
+                                               autocomplete="off" class="layui-input" value="{{ cour_date }}" required>
+                                    </div>
+                                </div>
+
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label">类型</label>
+                                    <div class="layui-input-block">
+                                        <select name="cour_type" required>
+                                            <option value=""></option>
+                                            <option value="0" {{ option_0 }}>数学</option>
+                                            <option value="1" {{ option_1 }}>化学</option>
+                                            <option value="2" {{ option_2 }}>物理</option>
+                                            <option value="3" {{ option_3 }}>地理</option>
+                                            <option value="4" {{ option_4 }}>信息技术</option>
+                                            <option value="5" {{ option_5 }}>外语</option>
+                                            <option value="6" {{ option_6 }}>政治</option>
+                                            <option value="7" {{ option_7 }}>历史</option>
+                                            <option value="8" {{ option_8 }}>医学</option>
+                                            <option value="9" {{ option_9 }}>法学</option>
+                                            <option value="10" {{ option_10 }}>经济学</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="layui-form-item layui-form-text">
+                                    <label class="layui-form-label">简介</label>
+                                    <div class="layui-input-block">
                                                 <textarea placeholder="请输入内容" name="cour_description"
                                                           class="layui-textarea"
                                                           required>{{ cour_description }}</textarea>
+                                    </div>
+                                </div>
+
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label">状态</label>
+                                    <div class="layui-input-block">
+                                        <input type="checkbox" lay-skin="switch" lay-text="ON|OFF"
+                                               lay-filter="cour_available" {{ cour_avai_select }}>
+                                    </div>
+                                </div>
+
+                                <div class="layui-hide">
+                                    <label class="layui-form-label">status</label>
+                                    <div class="layui-input-block">
+                                        <input type="text" name="cour_available" id="cour_available" autocomplete="off"
+                                               class="layui-input" value="{{ cour_available }}" required>
+                                    </div>
+                                </div>
+
+                                <div class="layui-form-item">
+                                    <div class="layui-input-block">
+                                        <button lay-submit="" class="layui-btn" lay-filter="submit_btn">立即提交</button>
+                                        <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-col-md7">
+                    <div class="layui-card">
+                        <div class="layui-card-header">
+                            学生列表
+                        </div>
+                        <div class="layui-card-body">
+                            <table lay-filter="stu_list" lay-data="{url: '{% url 'get_learn_list' id=cour_id %}'}">
+                                <thead>
+                                <tr>
+                                    <td lay-data="{field: 'id', width: 20, title: 'id', hide: true}"></td>
+                                    <td lay-data="{field: 'name', width: 120, title: '学生名称'}"></td>
+                                    <td lay-data="{field: 'start', width: 230, title: '开始日期'}"></td>
+                                    <td lay-data="{field: 'last', width: 230, title: '最后日期'}"></td>
+                                    <td lay-data="{field: 'number', title: '完成率'}"></td>
+                                </tr>
+                                </thead>
+                            </table>
+                        </div>
                     </div>
                 </div>
 
-                <div class="layui-form-item">
-                    <label class="layui-form-label">状态</label>
-                    <div class="layui-input-block">
-                        <input type="checkbox" lay-skin="switch" lay-text="ON|OFF"
-                               lay-filter="cour_available" {{ cour_avai_select }}>
+                <div class="layui-col-md5">
+                    <div class="layui-card">
+                        <div class="layui-card-header">
+                            章节信息
+                        </div>
+                        <div class="layui-card-body">
+                            <table lay-filter="sect_list" lay-data="{url: '{% url 'get_section_list' id=cour_id %}'}">
+                                <thead>
+                                <tr>
+                                    <td lay-data="{field: 'id', width: 20, title: 'id', hide: true}"></td>
+                                    <td lay-data="{field: 'sect_tag', width: 110, title: '章节标签'}"></td>
+                                    <td lay-data="{field: 'sect_name', width: 100, title: '章节名称'}"></td>
+                                    <td lay-data="{field: 'create_time', title: '创建日期'}"></td>
+                                </tr>
+                                </thead>
+                            </table>
+                            <button class="layui-btn"
+                                    onclick="window.location.href='{% url 'add_section' id=cour_id name=cour_name %}'">
+                                添加章节
+                            </button>
+                        </div>
                     </div>
                 </div>
 
-                <div class="layui-hide">
-                    <label class="layui-form-label">status</label>
-                    <div class="layui-input-block">
-                        <input type="text" name="cour_available" id="cour_available" autocomplete="off"
-                               class="layui-input" value="{{ cour_available }}" required>
+                <div class="layui-col-md12">
+                    <div class="layui-card">
+                        <div class="layui-card-body">
+                            <button class="layui-btn layui-btn-danger" id="del">删除课程</button>
+                            <span style="margin-left: 20px">
+                                一旦删除不可恢复
+                            </span>
+                        </div>
+
                     </div>
                 </div>
-
-                <div class="layui-form-item">
-                    <div class="layui-input-block">
-                        <button lay-submit="" class="layui-btn" lay-filter="submit_btn">立即提交</button>
-                        <button type="reset" class="layui-btn layui-btn-primary">重置</button>
-                    </div>
-                </div>
-            </form>
-
-            <button class="layui-btn" style="margin-left: 30px" id="add_section">section</button>
+            </div>
         </div>
+
     </div>
 </div>
 
 <script src="{% static 'assets/js/jquery-1.10.2.js' %}"></script>
 <script src="{% static 'assets/js/jquery.metisMenu.js' %}"></script>
 <script src="{% static 'layui/layui.all.js' %}"></script>
-<script src="{% static 'assets/js/custom-scripts.js' %}"></script>
 <script src="{% static 'assets/js/layui/nav.js' %}"></script>
+<script src="{% static 'assets/js/layui/course_info.js' %}"></script>
 <script src={% static 'assets/js/layui/update_course.js' %}></script>
+
 </body>
 
 </html>

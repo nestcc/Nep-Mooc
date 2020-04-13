@@ -16,4 +16,43 @@ layui.use(['form', 'element', 'laydate'], function () {
         layer.msg(elem.text());
     });
 
+
+    form.on('submit(submit_btn)', function () {
+        //
+        // console.log(form.val("cour_form"));
+
+        $.ajax({
+            url: '/teacher/submit_course/',
+            type: 'POST',
+            data: $("#cour_form").serialize(),
+            cache: false,
+            success: function (data) {
+                // console.log(form.val("cour_form"));
+                if (data['status'] === 'SUCCESS') {
+                    layer.msg("OK!!!!", {
+                        time: 0,
+                        btn: ['confirm'],
+                        end: function () {
+                            console.log(data)
+                        }
+                    });
+                } else {
+                    layer.msg(data['status'], {
+                        time: 0,
+                        btn: ['confirm']
+                    })
+                }
+            },
+            error: function (xhr) {
+                layer.msg('发送数据时发送错误', {
+                    time: 0,
+                    btn: ['confirm']
+                });
+                // console.log(xhr);
+            }
+        });
+        return false;
+    })
+
 });
+

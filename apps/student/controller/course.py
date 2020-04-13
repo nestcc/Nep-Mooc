@@ -1,5 +1,5 @@
 from typing import Dict
-from index.models import NepCourse
+from index.models import *
 from teacher.models import NepTeacher
 import time
 
@@ -32,15 +32,29 @@ class Course:
         except Exception as ecpt:
             self.submit_return['OBJ_INIT_ERROR'] = ecpt
 
-    def get_item_number(self):
-        return NepCourse.objects.count()
+    def get_item_number(self, **kwargs):
+        if 'stu_id' in kwargs:
+            return NepLearnStatus.objects.filter(student_id=kwargs['stu_id']).count()
+        elif 'info' in kwargs:
+            return NepCourse.objects.filter(cour_name__contains=kwargs['info']).count()
+        else:
+            return NepCourse.objects.count()
 
     def all_course(self, **kwargs):
         number, page = kwargs.get('number'), kwargs.get('page')
         if number == None:
             return NepCourse.objects.all()
+
+        elif 'info' in kwargs.keys():
+            return NepCourse.objects.filter(cour_name__contains=kwargs['info'])[(page - 1) * number: page * number]
         else:
             return NepCourse.objects.all()[(page - 1) * number: page * number]
+
+    def stu_cour(self, **kwargs):
+        stu_id = kwargs['stu_id']
+        number, page = kwargs['number'], kwargs['page']
+
+        return NepLearnStatus.objects.filter(student_id=stu_id)[(page - 1) * number: page * number]
 
     def get_cour_info(self, **kwargs):
         if 'id' in kwargs.keys():
@@ -51,3 +65,5 @@ class Course:
                 'cour_schedule': str(self.CourseObj.cour_start) + ' - ' + str(self.CourseObj.cour_end),
                 'cour_description': self.CourseObj.cour_description,
                 'cour_tch': self.CourseObj.cour_create_tch.tch_name}
+
+

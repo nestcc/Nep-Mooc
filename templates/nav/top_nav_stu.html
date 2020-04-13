@@ -4,15 +4,15 @@
     </a>
 
     <!-- TOP NAV -->
-    <ul class="layui-nav" style="margin-right: 30px">
+    <ul class="layui-nav" style="margin-right: 30px" lay-filter="top_nav">
         <li class="layui-nav-item ">
             <a href=""><i class="fa fa-gear fa-fw"></i>设置</a>
         </li>
         <li class="layui-nav-item">
             <a href="#"><i class="fa fa-user fa-fw"></i>个人</a>
             <dl class="layui-nav-child">
-                <dd><a href={% url 'tch_index' %}><i class="fa fa-mortar-board fa-fw"></i>&nbsp我是学生</a></dd>
-                <dd><a href=""><i class="fa fa-sign-out fa-fw"></i>&nbsp登出</a></dd>
+                <dd><a href='#'><i class="fa fa-mortar-board fa-fw" style="padding: 0 5px 0 0"></i>我是学生</a></dd>
+                <dd><a href={% url 'log_out' %}><i class="fa fa-sign-out fa-fw" style="padding: 0 5px 0 0"></i>登出</a></dd>
             </dl>
         </li>
     </ul>

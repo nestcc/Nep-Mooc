@@ -1,13 +1,40 @@
-layui.use(['form', 'element', 'laydate'], function () {
+layui.use(['form', 'element', 'laydate', 'upload'], function () {
     var form = layui.form;
     var laydate = layui.laydate;
-    var cour_available = true;
+    var lay_upload = layui.upload;
+
 
     //日期
     laydate.render({
         elem: '#cour_range',
         type: 'datetime',
         range: true
+    });
+
+    lay_upload.render({
+        elem: '#upload_image',
+        url: '/teacher/cour_image/',
+        data: {
+            'csrfmiddlewaretoken': function () {
+                return $('input:hidden').val()
+            },
+            'type': 'image',
+            'cour_id': $('#cour_id').val()
+        },
+        done: function (data) {
+            if (data['status'] === 'SUCCESS'){
+                layer.msg("OK!!!", {
+                    time: 0,
+                    btn: 'confirm',
+                    end: function () {
+                        window.location.reload()
+                    }
+                })
+            }
+        },
+        error: function () {
+            //请求异常回调
+        }
     });
 
     form.on('switch(cour_available)', function (data) {
@@ -60,9 +87,43 @@ layui.use(['form', 'element', 'laydate'], function () {
         return false;
     })
 
-});
+})
+;
 
 $('#add_section').click(function () {
     location.href = '/teacher/cour_section/' + document.getElementById('cour_id').value
         + '/' + document.getElementById('cour_name').value + '/';
+});
+
+$('#del').click(function () {
+    $.ajax({
+            url: '/teacher/delete_course/',
+            type: 'POST',
+            data: $("#cour_form").serialize(),
+            cache: false,
+            success: function (data) {
+                // console.log(form.val("cour_form"));
+                if (data['status'] === 'SUCCESS') {
+                    layer.msg("OK!!!!", {
+                        time: 0,
+                        btn: ['confirm'],
+                        end: function () {
+                            location.href='/teacher/manage_course/';
+                        }
+                    });
+                } else {
+                    layer.msg(data['status'], {
+                        time: 0,
+                        btn: ['confirm']
+                    })
+                }
+            },
+            error: function (xhr) {
+                layer.msg('发送数据时发送错误', {
+                    time: 0,
+                    btn: ['confirm']
+                });
+                console.log(xhr);
+            }
+        });
 });

@@ -1,56 +1,50 @@
 var onclick_id = 0;
 var csrf_token = $('input:hidden').val();
 
-layui.use(['laypage', 'layer'], function () {
+layui.use(['laypage', 'layer', 'form'], function () {
     var laypage = layui.laypage;
     var layer = layui.layer;
+    var form = layui.form;
 
     laypage.render({
         elem: 'lay-page',
         count: $('#item_number').html(),
         curr: location.href.split('/')[5],
         limit: 6,
-        jump: function(obj, first){
-            console.log(obj.curr);
-            if (!first){
-                location.href = '/student/search_course/' + obj.curr + '/';
+        jump: function (obj, first) {
+            if (!first) {
+                var url_spliter = location.href.split('/');
+                if (url_spliter.length === 7){
+                    location.href = '/student/search_course/' + obj.curr + '/';
+                } else {
+                    location.href = '/student/search_course/' + obj.curr + '/' + url_spliter[6] + '/';
+                }
             }
         }
     })
 });
 
 function view_info(id) {
-    onclick_id = id;
-    $.ajax({
-        url: "/student/show_cour_info/" + id + "/",
-        type: "GET",
-        cache: false,
-        success: function (data) {
-            console.log(data);
-            var layer = layui.layer;
-            layer.open({
-                type: 1,
-                area: ["500px", "300px"],
-                title: data['cour_name'],
-                content: "<p>" + data['cour_type'] + "</p>" +
-                    "<p>" + data['cour_schedule'] + "</p>" +
-                    "<p>" + data['cour_description'] + "</p>" +
-                    "<p>" + data['cour_tch'] + "</p>",
-
-                btn: ['我要参加'],
-                btn1: confirm,
-            })
+    layer.open({
+        type: 2,
+        shade: false,
+        area: ['1000px', '700px'],
+        maxmin: true,
+        content: '/student/show_cour_detail/' + id + '/',
+        btn: ['join in'],
+        btn1: function (index, layero) {
+            confirm(id)
         }
-    })
+    });
 }
 
 
-function confirm(index, layero) {
+function confirm(id) {
     $.ajax({
         url: '/student/join_course/',
         type: 'POST',
         cache: false,
-        data: 'csrfmiddlewaretoken=' + csrf_token + '&id_cour=' + onclick_id,
+        data: 'csrfmiddlewaretoken=' + csrf_token + '&id_cour=' + id,
         success: function (data) {
             if (data['status'] === 'SUCCESS') {
                 layer.msg('OK!!!', {
@@ -65,4 +59,12 @@ function confirm(index, layero) {
             }
         }
     })
+}
+
+function search_by_info(text) {
+    if (text === '') {
+        location.href = '/student/search_course/1/';
+    } else {
+        location.href = '/student/search_course/1/' + text + '/';
+    }
 }

@@ -1,0 +1,140 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    {% include 'nav/head.html' %}
+</head>
+
+<body>
+{% csrf_token %}
+<div class="layui-bg-gray">
+    <div class="layui-row layui-col-space12" style="padding: 10px;">
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <div class="layui-card-body">
+                    <fieldset class="layui-elem-field layui-field-title">
+                        <legend>学生基础信息</legend>
+                    </fieldset>
+                    <div class="layui-row layui-col-space3">
+                        <div class="layui-col-md2">
+                            姓名
+                        </div>
+                        <div class="layui-col-md10">
+                            {{ stu_name }}
+                        </div>
+
+                        <div class="layui-col-md2">
+                            联系方式
+                        </div>
+                        <div class="layui-col-md10">
+                            {{ stu_mobile }}
+                        </div>
+
+                        <div class="layui-col-md2">
+                            所在学校
+                        </div>
+                        <div class="layui-col-md10">
+                            {{ stu_univ }}
+                        </div>
+
+                        <div class="layui-col-md2">
+                            注册日期
+                        </div>
+                        <div class="layui-col-md10">
+                            {{ stu_register_time }}
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="layui-card">
+                <div class="layui-card-body">
+                    <fieldset class="layui-elem-field layui-field-title">
+                        <legend>课程学习信息</legend>
+                    </fieldset>
+                    <div class="layui-row layui-col-space3">
+                        <div class="layui-col-md2">
+                            进度
+                        </div>
+                        <div class="layui-col-md10">
+                            {{ percentage }}
+                        </div>
+
+                        <div class="layui-col-md2">
+                            开始学习时间
+                        </div>
+                        <div class="layui-col-md10">
+                            {{ start_time }}
+                        </div>
+
+                        <div class="layui-col-md2">
+                            上次学习时间
+                        </div>
+                        <div class="layui-col-md10">
+                            {{ last_time }}
+                        </div>
+
+                        <div class="layui-col-md12">
+                            已完成章节
+                        </div>
+                        <div class="layui-col-md12">
+                            <table lay-filter="finished_table">
+                                <thead>
+                                <tr>
+                                    <th lay-data="{field:'tag', width:200}">标签</th>
+                                    <th lay-data="{field:'name', width:150}">名称</th>
+                                    <th lay-data="{field:'start', minWidth: 180}">开始时间</th>
+                                    <th lay-data="{field:'last'}">上次时间</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for each_finished in finished %}
+                                    <tr>
+                                        <td>{{ each_finished.section.sect_tag }}</td>
+                                        <td>{{ each_finished.section.sect_name }}</td>
+                                        <td>{{ each_finished.start_time }}</td>
+                                        <td>{{ each_finished.last_time }}</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="layui-col-md12">
+                            正在学习章节
+                        </div>
+                        <div class="layui-col-md12">
+                            <table lay-filter="learning_table">
+                                <thead>
+                                <tr>
+                                    <th lay-data="{field:'tag', width:200}">标签</th>
+                                    <th lay-data="{field:'name', width:150}">名称</th>
+                                    <th lay-data="{field:'start', minWidth: 180}">开始时间</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for each_learning in learning %}
+                                    <tr>
+                                        <td>{{ each_learning.section.sect_tag }}</td>
+                                        <td>{{ each_learning.section.sect_name }}</td>
+                                        <td>{{ each_learning.start_time }}</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+
+<script src="{% static 'layui/layui.all.js' %}"></script>
+<script src="{% static 'assets/js/layui/learn_detail_table.js' %}"></script>
+
+</html>

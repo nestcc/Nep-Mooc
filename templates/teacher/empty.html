@@ -1,25 +1,23 @@
-﻿{% load static %}
+{% load static %}
 <!DOCTYPE html>
 <html lang="zh">
 <head>
     {% include 'nav/head.html' %}
 </head>
 
+
 <body>
 <div class="layui-layout layui-layout-admin">
 
     {#    TOP NAV#}
-    {% include 'nav/top_nav_stu.html' %}
+    {% include 'nav/top_nav_tch.html' %}
     {#    TOP NAV#}
 
     {#    LEFT NAV#}
-    {% include 'nav/left_nav_stu.html' %}
+    {% include 'nav/left_nav_tch.html' %}
     {#    LEFT NAV#}
 
     <div class="layui-body">
-        <div style="padding: 10px">
-
-        </div>
     </div>
 </div>
 
@@ -27,6 +25,7 @@
 <script src="{% static 'assets/js/jquery.metisMenu.js' %}"></script>
 <script src="{% static 'layui/layui.all.js' %}"></script>
 <script src="{% static 'assets/js/layui/nav.js' %}"></script>
+
 </body>
 
 </html>

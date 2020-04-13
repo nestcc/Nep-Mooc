@@ -865,7 +865,7 @@ a cite {
 .layui-layout-admin .layui-body {
     position: fixed;
     top: 60px;
-    bottom: 44px
+    bottom: 0;
 }
 
 .layui-layout-admin .layui-main {

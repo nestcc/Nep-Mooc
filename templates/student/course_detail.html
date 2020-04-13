@@ -1,0 +1,87 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    {% include 'nav/head.html' %}
+</head>
+
+<body>
+{% csrf_token %}
+<div class="layui-bg-gray">
+    <div class="layui-row layui-col-space12" style="padding: 10px;">
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <div class="layui-card-body">
+                    <fieldset class="layui-elem-field layui-field-title">
+                        <legend>课程信息</legend>
+                    </fieldset>
+                    <div class="layui-row layui-col-space3">
+                        <div class="layui-col-md2">
+                            课程名称
+                        </div>
+                        <div class="layui-col-md10">
+                            {{ cour.cour_name }}
+                        </div>
+
+                        <div class="layui-col-md2">
+                            分类信息
+                        </div>
+                        <div class="layui-col-md10">
+                            {{ cour.get_cour_type_display }}
+                        </div>
+
+                        <div class="layui-col-md2">
+                            创建教师
+                        </div>
+                        <div class="layui-col-md10">
+                            {{ cour.cour_create_tch.tch_name }}
+                        </div>
+
+                        <div class="layui-col-md2">
+                            开始时间
+                        </div>
+                        <div class="layui-col-md10">
+                            {{ cour.cour_start }}
+                        </div>
+
+                        <div class="layui-col-md2">
+                            结束时间
+                        </div>
+                        <div class="layui-col-md10">
+                            {{ cour.cour_end }}
+                        </div>
+
+                        <div class="layui-col-md2">
+                            参加人数
+                        </div>
+                        <div class="layui-col-md10">
+                            {{ stu_num }}
+                        </div>
+
+                        <div class="layui-col-md2">
+                            章节数目
+                        </div>
+                        <div class="layui-col-md10">
+                            {{ sect_num }}
+                        </div>
+
+                        <div class="layui-col-md2">
+                            课程简介
+                        </div>
+                        <div class="layui-col-md10">
+                            {{ cour.cour_description }}
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+
+<script src="{% static 'layui/layui.all.js' %}"></script>
+<script src="{% static 'assets/js/layui/learn_detail_table.js' %}"></script>
+
+</html>

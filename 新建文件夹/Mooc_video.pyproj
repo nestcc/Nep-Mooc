@@ -147,7 +147,7 @@
     <Content Include="static\layui\lay\modules\mobile.js" />
     <Content Include="static\layui\lay\modules\rate.js" />
     <Content Include="static\layui\lay\modules\slider.js" />
-    <Content Include="static\layui\lay\modules\table.js" />
+    <Content Include="static\layui\lay\modules\course_table.js" />
     <Content Include="static\layui\lay\modules\transfer.js" />
     <Content Include="static\layui\lay\modules\tree.js" />
     <Content Include="static\layui\lay\modules\upload.js" />

@@ -1,7 +1,10 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="zh">
-{% include 'nav/head.html' %}
+<head>
+    {% include 'nav/head.html' %}
+</head>
+
 
 <body>
 <div class="layui-layout layui-layout-admin">
@@ -19,7 +22,7 @@
             <fieldset class="layui-elem-field layui-field-title">
                 <legend>创建新课程</legend>
             </fieldset>
-            <form class="layui-form" action={% url 'submit_course' %} method="POST">
+            <form class="layui-form" id="cour_form" lay-filter="cour_form">
                 {% csrf_token %}
                 <div class="layui-form-item">
                     <label class="layui-form-label">名称</label>
@@ -60,14 +63,14 @@
                 <div class="layui-form-item layui-form-text">
                     <label class="layui-form-label">简介</label>
                     <div class="layui-input-block">
-                                                <textarea placeholder="请输入内容" name="cour_description"
+                        <textarea placeholder="请输入内容" name="cour_description"
                                                           class="layui-textarea" required></textarea>
                     </div>
                 </div>
 
                 <div class="layui-form-item">
                     <div class="layui-input-block">
-                        <button type="submit" class="layui-btn">立即提交
+                        <button class="layui-btn" lay-submit="" lay-filter="submit_btn">立即提交
                         </button>
                         <button type="reset" class="layui-btn layui-btn-primary">重置</button>
                     </div>
@@ -81,7 +84,6 @@
 <script src="{% static 'assets/js/jquery-1.10.2.js' %}"></script>
 <script src="{% static 'assets/js/jquery.metisMenu.js' %}"></script>
 <script src="{% static 'layui/layui.all.js' %}"></script>
-<script src="{% static 'assets/js/custom-scripts.js' %}"></script>
 <script src="{% static 'assets/js/layui/nav.js' %}"></script>
 <script src={% static 'assets/js/layui/create_course.js' %}></script>
 

@@ -18,7 +18,7 @@
             {#            </li>#}
 
             <li class="layui-nav-item {{ class_my_course }}">
-                <a href="{% url 'my_course' %}"><i class="fa fa-book"></i> 我参加的课程</a>
+                <a href="{% url 'my_course' page=1 %}"><i class="fa fa-book"></i> 我参加的课程</a>
             </li>
             <li class="layui-nav-item {{ class_search_course }}">
                 <a href="{% url 'stu_search_course' page=1 %}"><i class="fa fa-plus-square"></i> 参加新课程</a>

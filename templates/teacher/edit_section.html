@@ -68,7 +68,17 @@
             <button type="button" class="layui-btn" id="reupload_btn" style="margin-left: 110px">
                 <i class="layui-icon">&#xe67c;</i>重新上传视频文件
             </button>
-            <div class="layui-col-md12" style="margin-top: 20px">
+
+            <div style="padding: 20px 110px">
+                <p>
+                    <video id="sect_video" width="800" controls preload>
+                        <source src="/static/{{ sect_obj.sect_media }}" type="video/mp4"/>
+                    </video>
+                </p>
+            </div>
+
+
+            <div class="layui-col-md12" style="margin: 20px 0">
                 <button class="layui-btn layui-btn-danger" style="margin-left: 110px" id="del">
                     删除课程
                 </button>

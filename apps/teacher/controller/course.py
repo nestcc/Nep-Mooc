@@ -29,6 +29,10 @@ class Course:
             self.data_return['OBJ_INIT_ERROR'] = repr(ecpt)
 
     def submit(self):
+        if self.CourseObj.cour_name == '' or self.CourseObj.cour_type == '':
+            self.data_return['status'] = 'FAIL'
+            self.data_return['error'] = 'None Type'
+            return self.data_return
         try:
             self.CourseObj.save()
             self.data_return['status'] = 'SUCCESS'

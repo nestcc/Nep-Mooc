@@ -3,7 +3,7 @@
 <html lang="zh">
 <head>
     {% include 'nav/head.html' %}
-    <link rel="stylesheet" href="{% static 'assets/css/cour_info.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/layout/cour_info.css' %}">
 </head>
 
 
@@ -20,7 +20,7 @@
 
     <div class="layui-body layui-bg-gray">
         <div class="layui-card">
-            <div class="layui-card-header">课程详情 / {{ cour_name }}</div>
+            <div class="layui-card-header">课程详情 / {{ cour_obj.cour_name }}</div>
         </div>
 
         <div class="layui-fluid">
@@ -114,7 +114,8 @@
                                     <label abel class="layui-form-label">名称</label>
                                     <div class="layui-input-block">
                                         <input type="text" name="cour_name" id="cour_name" autocomplete="off"
-                                               placeholder="请输入课程名称" class="layui-input" value="{{ cour_name }}"
+                                               placeholder="请输入课程名称" class="layui-input"
+                                               value="{{ cour_obj.cour_name }}"
                                                required>
                                     </div>
                                 </div>
@@ -133,17 +134,20 @@
                                     <div class="layui-input-block">
                                         <select name="cour_type" required>
                                             <option value=""></option>
-                                            <option value="0" {{ option_0 }}>数学</option>
-                                            <option value="1" {{ option_1 }}>化学</option>
-                                            <option value="2" {{ option_2 }}>物理</option>
-                                            <option value="3" {{ option_3 }}>地理</option>
-                                            <option value="4" {{ option_4 }}>信息技术</option>
-                                            <option value="5" {{ option_5 }}>外语</option>
-                                            <option value="6" {{ option_6 }}>政治</option>
-                                            <option value="7" {{ option_7 }}>历史</option>
-                                            <option value="8" {{ option_8 }}>医学</option>
-                                            <option value="9" {{ option_9 }}>法学</option>
-                                            <option value="10" {{ option_10 }}>经济学</option>
+                                            <option value="0" {{ sele0 }}>哲学</option>
+                                            <option value="1" {{ sele1 }}>经济学</option>
+                                            <option value="2" {{ sele2 }}>法学</option>
+                                            <option value="3" {{ sele3 }}>教育学</option>
+                                            <option value="4" {{ sele4 }}>文学</option>
+                                            <option value="5" {{ sele5 }}>历史学</option>
+                                            <option value="6" {{ sele6 }}>理学</option>
+                                            <option value="7" {{ sele7 }}>工学</option>
+                                            <option value="8" {{ sele8 }}>农学</option>
+                                            <option value="9" {{ sele9 }}>医学</option>
+                                            <option value="10" {{ sele10 }}>管理学</option>
+                                            <option value="11" {{ sele11 }}>艺术学</option>
+                                            <option value="12" {{ sele12 }}>军事学</option>
+                                            <option value="13" {{ sele13 }}>其他</option>
                                         </select>
                                     </div>
                                 </div>
@@ -153,7 +157,7 @@
                                     <div class="layui-input-block">
                                                 <textarea placeholder="请输入内容" name="cour_description"
                                                           class="layui-textarea"
-                                                          required>{{ cour_description }}</textarea>
+                                                          required>{{ cour_obj.cour_description }}</textarea>
                                     </div>
                                 </div>
 
@@ -169,7 +173,7 @@
                                     <label class="layui-form-label">status</label>
                                     <div class="layui-input-block">
                                         <input type="text" name="cour_available" id="cour_available" autocomplete="off"
-                                               class="layui-input" value="{{ cour_available }}" required>
+                                               class="layui-input" value="{{ cour_obj.cour_available }}" required>
                                     </div>
                                 </div>
 
@@ -189,7 +193,7 @@
                             学生列表
                         </div>
                         <div class="layui-card-body">
-                            <table lay-filter="stu_list" lay-data="{url: '{% url 'get_learn_list' id=cour_id %}'}">
+                            <table lay-filter="stu_list" lay-data="{url: '{% url 'get_learn_list' id=cour_obj.id %}'}">
                                 <thead>
                                 <tr>
                                     <td lay-data="{field: 'id', width: 20, title: 'id', hide: true}"></td>
@@ -206,11 +210,17 @@
 
                 <div class="layui-col-md5">
                     <div class="layui-card">
-                        <div class="layui-card-header">
+                        <div class="layui-card-header" style="position: relative">
                             章节信息
+                            {#                            <p style="position: absolute; right: 50px">#}
+                            <button class="layui-btn layui-btn-sm" style="position: absolute; right: 20px; top: 5px"
+                                    onclick="window.location.href='{% url 'add_section' id=cour_obj.id name=cour_obj.cour_name %}'">
+                                添加章节
+                            </button>
                         </div>
                         <div class="layui-card-body">
-                            <table lay-filter="sect_list" lay-data="{url: '{% url 'get_section_list' id=cour_id %}'}">
+                            <table lay-filter="sect_list"
+                                   lay-data="{url: '{% url 'get_section_list' id=cour_obj.id %}'}">
                                 <thead>
                                 <tr>
                                     <td lay-data="{field: 'id', width: 20, title: 'id', hide: true}"></td>
@@ -220,10 +230,32 @@
                                 </tr>
                                 </thead>
                             </table>
-                            <button class="layui-btn"
-                                    onclick="window.location.href='{% url 'add_section' id=cour_id name=cour_name %}'">
-                                添加章节
-                            </button>
+                            {#                            <button class="layui-btn"#}
+                            {#                                    onclick="window.location.href='{% url 'add_section' id=cour_obj.id name=cour_obj.cour_name %}'">#}
+                            {#                                添加章节#}
+                            {#                            </button>#}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="layui-col-md12">
+                    <div class="layui-card">
+                        <div class="layui-card-header">
+                            情况统计
+                        </div>
+                        <div class="layui-card-body">
+                            <div class="layui-carousel" id="status_chart" lay-filter="test4">
+                                <div carousel-item="">
+                                    <div>
+                                        <div class="echarts-div" id="stu_chart"></div>
+                                    </div>
+                                    <div>
+                                        <div class="echarts-div" id="cour_chart"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+
                         </div>
                     </div>
                 </div>
@@ -241,15 +273,16 @@
                 </div>
             </div>
         </div>
-
     </div>
 </div>
 
 <script src="{% static 'assets/js/jquery-1.10.2.js' %}"></script>
 <script src="{% static 'assets/js/jquery.metisMenu.js' %}"></script>
 <script src="{% static 'layui/layui.all.js' %}"></script>
+<script src="{% static 'echart/echarts.js' %}"></script>
 <script src="{% static 'assets/js/layui/nav.js' %}"></script>
 <script src="{% static 'assets/js/layui/course_info.js' %}"></script>
+<script src="{% static 'assets/js/layui/course_info_charts.js' %}"></script>
 <script src={% static 'assets/js/layui/update_course.js' %}></script>
 
 </body>

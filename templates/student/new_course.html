@@ -26,18 +26,25 @@
             </fieldset>
         </div>
 
-        <form class="layui-form">
-            {% csrf_token %}
-            <div class="layui-form-item">
-                <div class="layui-input-block search-box">
-                    <i class="layui-icon layui-icon-search" onclick="search_by_info(document.getElementById('search_box').value)"></i>
-                    <input placeholder="搜索课程" id="search_box" type="text" class="layui-input" onkeydown="if(event.keyCode==13){search_by_info(this.value);return false}">
-                </div>
-            </div>
-        </form>
 
         <div class="layui-fluid">
             <div class="layui-row layui-col-space12">
+                <div class="layui-col-md11">
+                    <form class="layui-form">
+                        {% csrf_token %}
+                        <div class="layui-form-item">
+                            <div class="layui-input-block search-box">
+                                <i class="layui-icon layui-icon-search"
+                                   onclick="search_by_info(document.getElementById('search_box').value)"></i>
+                                <input placeholder="搜索课程" id="search_box" type="text" class="layui-input"
+                                       onkeydown="if(event.keyCode==13){search_by_info(this.value);return false}">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="layui-col-md1">
+                    <button class="layui-btn" onclick="get_recommend()">获取推荐</button>
+                </div>
                 {% for each in cour_list %}
                     <div class="layui-col-md12">
                         <div class="layui-card cour-item" onclick="view_info({{ each.id }})">

@@ -19,8 +19,7 @@ urlpatterns = [
     )),
 
     path('teacher/', include(
-        [path('login/', tchViews.login, name='tch_login'),
-         path('index/', tchViews.index, name='tch_index'),
+        [path('index/', tchViews.index, name='tch_index'),
          path('create_course/', tchViews.create_course, name='tch_create_course'),
          path('submit_course/', tchViews.new_course, name='submit_course'),
          path('manage_course/', tchViews.course_list, name='tch_course_list'),
@@ -46,6 +45,8 @@ urlpatterns = [
          path('get_section_list/<int:id>/', tchViews.get_sect_by_cour, name='get_section_list'),
 
          path('get_index_chart/', tchViews.get_index_chart_data),
+         path('get_stu_top10_chart/<int:cour_id>/', tchViews.get_stu_top10_chart),
+         path('get_last_week_chart/<int:cour_id>/', tchViews.get_last_week_chart)
          ]
     )),
 
@@ -58,12 +59,14 @@ urlpatterns = [
          path('profile/', stuViews.profile, name='stu_profile'),
          path('show_cour_info/<int:id>/', stuViews.show_cour_info),
          path('join_course/', stuViews.join_course),
+         path('quit_course/', stuViews.quit_course),
          path('course_page/<int:id>/', stuViews.course_page),
          path('learn/<int:sect_id>/', stuViews.learn_view, name='stu_learn'),
          path('show_cour_detail/<int:id>/', stuViews.show_cour_detail),
 
          path('get_learned_sect/', stuViews.get_learned_sect),
-         path('finished/', stuViews.finish_sect)
+         path('finished/', stuViews.finish_sect),
+         path('get_recommend/', stuViews.get_recommend)
          ]
     )),
 ]

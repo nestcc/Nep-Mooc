@@ -47,3 +47,13 @@
     height: 400px;
     margin: 0 auto;
 }
+
+.layui-carousel > [carousel-item]{
+    text-align: center;
+    line-height: 50px;
+    color: #1c6ca1;
+}
+
+.layui-carousel img {
+    height: 360px;
+}

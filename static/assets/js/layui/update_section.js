@@ -20,6 +20,7 @@ layui.use(['form', 'upload'], function () {
         url: '/teacher/reupload/',
         accept: 'file',
         exts: 'mp4',
+        size: 512000,
         data: {
             'csrfmiddlewaretoken': function () {
                 return $('input:hidden').val()
@@ -27,13 +28,21 @@ layui.use(['form', 'upload'], function () {
             'type': 'video',
             'sect_id': self.location.href.split('/')[5]
         },
+        before: function (obj) {
+            layer.load();
+        },
         done: function (result) {
+            layer.closeAll('loading');
             console.log(result);
             if (result['status'] === 'SUCCESS') {
                 layer.msg('upload ok!!!', {
                     time: 0,
-                    btn: ['confirm']
-                })
+                    btn: ['confirm'],
+                    end: function () {
+                        location.reload()
+                    }
+
+                });
             } else {
                 layer.msg(result['error'], {
                     time: 0,
@@ -43,6 +52,7 @@ layui.use(['form', 'upload'], function () {
 
         },
         error: function () {
+            layer.closeAll('loading');
             layer.msg(self.url);
         }
     });

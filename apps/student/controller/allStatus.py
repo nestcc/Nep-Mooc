@@ -24,6 +24,21 @@ def new_status(id_stu, id_cour):
             return {'status': 'FAIL',
                     'error': repr(excp)}
 
+def quit_cour(id_stu, id_course):
+    try:
+        drop_lstatus = NepLearnStatus.objects.get(course_id=id_course, student_id=id_stu)
+        drop_lstatus.delete()
+
+        drop_sstatus = NepSectionStatus.objects.filter(course_id=id_course, student_id=id_stu)
+        drop_sstatus.delete()
+        return {'status': 'SUCCESS'}
+
+    except Exception as excp:
+        return {'status': 'FAIL',
+                'error': repr(excp)}
+
+
+
 def get_learned(cour_id, stu_id):
     # sect_status_obj = NepSectionStatus.objects.filter(course_id=cour_id, student_id=stu_id)
     sect_complete = []
@@ -62,18 +77,23 @@ def before_learn(sect_id, stu_id):
 def finish_sect_handler(sect_id, stu_id):
     sect_status = NepSectionStatus.objects.get(section_id=sect_id, student_id=stu_id)
     cour_id = sect_status.course_id
+    ls_obj = NepLearnStatus.objects.get(student_id=stu_id, course=sect_status.course)
     if not sect_status.completed:
         sect_status.last_time = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())
         sect_status.completed = True
         sect_status.save()
 
-        learn_status = NepLearnStatus.objects.get(student_id=stu_id, course=sect_status.course)
+        ls_obj = NepLearnStatus.objects.get(student_id=stu_id, course=sect_status.course)
 
         finished = NepSectionStatus.objects.filter(course_id=cour_id, student_id=stu_id, completed=True).count()
         all = NepSection.objects.filter(sect_cour_id=cour_id).count()
 
-        learn_status.percentage = int((finished/all) * 100)
-        learn_status.save()
+        ls_obj.percentage = int((finished/all) * 100)
+        # ls_obj.save()
+
+    # ls_obj = NepLearnStatus.objects.get(course_id=cour_id, student_id=stu_id)
+    ls_obj.learn_frequency += 1
+    ls_obj.save()
 
     return {'status': "SUCCESS",
             'url': '/student/course_page/' + str(cour_id) + '/'}

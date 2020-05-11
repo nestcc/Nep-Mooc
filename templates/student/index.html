@@ -3,6 +3,7 @@
 <html lang="zh">
 <head>
     {% include 'nav/head.html' %}
+    <link rel="stylesheet" href="{% static 'assets/css/layout/index_page.css' %}">
 </head>
 
 <body>
@@ -16,9 +17,30 @@
     {% include 'nav/left_nav_stu.html' %}
     {#    LEFT NAV#}
 
-    <div class="layui-body">
-        <div style="padding: 10px">
-
+    <div class="layui-body layui-bg-gray">
+        {% csrf_token %}
+        <div class="layui-fluid">
+            <div class="layui-row layui-col-space12">
+                <div class="layui-col-md12">
+                    <div class="layui-card top-card">
+                        <div class="layui-card-header">
+                            推荐列表
+                        </div>
+                        <div class="layui-card-body">
+                            <div class="layui-carousel" id="index_carousel" lay-filter="index_carousel">
+                                <div carousel-item="">
+                                    {% for each_cour in cour_list %}
+                                        <div>
+                                            <img src="/static/media/{{ each_cour.cour_image }}">
+                                            <p>{{ each_cour.cour_name }}</p>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -27,6 +49,7 @@
 <script src="{% static 'assets/js/jquery.metisMenu.js' %}"></script>
 <script src="{% static 'layui/layui.all.js' %}"></script>
 <script src="{% static 'assets/js/layui/nav.js' %}"></script>
+<script src="{% static 'assets/js/layui/stu_index.js' %}"></script>
 </body>
 
 </html>

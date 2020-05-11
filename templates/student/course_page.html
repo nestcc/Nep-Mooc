@@ -4,6 +4,7 @@
 <head>
     {% include 'nav/head.html' %}
     <link rel="stylesheet" href="{% static 'assets/css/layout/card_list.css' %}"/>
+    <link rel="stylesheet" href="{% static 'assets/css/layout/cour_info.css' %}">
 </head>
 
 <body>
@@ -18,18 +19,107 @@
     {#    LEFT NAV#}
 
     <div class="layui-body layui-bg-gray">
-        <div style="padding: 10px">
-            <fieldset class="layui-elem-field layui-field-title">
-                <legend>全部章节</legend>
-            </fieldset>
-        </div>
-
         <div class="layui-fluid">
+            <div class="layui-row layui-col-space12">
+                <div class="layui-col-md4">
+                    <div class="layui-card top-card">
+                        <div class="layui-card-header">
+                            课程详情
+                        </div>
+                        <div class="layui-card-body">
+                            <div class="layui-col-md4">
+                                课程名称
+                            </div>
+                            <div class="layui-col-md8">
+                                {{ cour_obj.cour_name }}
+                            </div>
+
+                            <div class="layui-col-md4">
+                                分类信息
+                            </div>
+                            <div class="layui-col-md8">
+                                {{ cour_obj.get_cour_type_display }}
+                            </div>
+
+                            <div class="layui-col-md4">
+                                创建教师
+                            </div>
+                            <div class="layui-col-md8">
+                                {{ cour_obj.cour_create_tch.tch_name }}
+                            </div>
+
+                            <div class="layui-col-md4">
+                                开始时间
+                            </div>
+                            <div class="layui-col-md8">
+                                {{ cour_obj.cour_start }}
+                            </div>
+
+                            <div class="layui-col-md4">
+                                结束时间
+                            </div>
+                            <div class="layui-col-md8">
+                                {{ cour_obj.cour_end }}
+                            </div>
+
+                            <div class="layui-col-md4">
+                                课程简介
+                            </div>
+                            <div class="layui-col-md8">
+                                {{ cour_obj.cour_description }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="layui-col-md4">
+                    <div class="layui-card top-card">
+                        <div class="layui-card-header">
+                            我的学习情况
+                        </div>
+                        <div class="layui-card-body">
+                            <div class="layui-col-md4">
+                                完成百分比
+                            </div>
+                            <div class="layui-col-md8">
+                                {{ ls_obj.percentage }}%
+                            </div>
+                            <div class="layui-col-md4">
+                                上次学习时间
+                            </div>
+                            <div class="layui-col-md8">
+                                {{ ls_obj.last_time }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="layui-col-md4">
+                    <div class="layui-card top-card">
+                        <div class="layui-card-header">
+                            课程操作
+                        </div>
+                        <div class="layui-card-body">
+                            {% csrf_token %}
+                            <button type="button" class="layui-btn layui-btn-danger" onclick="quit({{ cour_obj.id }})">退选课程</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="padding: 10px">
+                <fieldset class="layui-elem-field layui-field-title">
+                    <legend>全部章节</legend>
+                </fieldset>
+            </div>
+
+            {#            <div class="layui-fluid">#}
             <div class="layui-row layui-col-space12">
                 <div class="layui-col-md12">
                     {% csrf_token %}
                     {% for each in section_list %}
-                        <div class="layui-card sect-item" onclick="window.location.href='{% url 'stu_learn' sect_id=each.id %}'">
+                        <div class="layui-card sect-item"
+                             onclick="window.location.href='{% url 'stu_learn' sect_id=each.id %}'">
                             <div class="layui-card-header" id="header_{{ each.id }}">
                                 [{{ each.sect_tag }}]
                             </div>
@@ -43,6 +133,7 @@
         </div>
     </div>
 </div>
+
 
 <script src="{% static 'assets/js/jquery-1.10.2.js' %}"></script>
 <script src="{% static 'assets/js/jquery.metisMenu.js' %}"></script>

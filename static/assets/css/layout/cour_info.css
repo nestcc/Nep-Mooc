@@ -1,9 +1,9 @@
-.in-card-body{
+.in-card-body {
     padding: 20px 0;
     min-height: 70px
 }
 
-.in-card-body span{
+.in-card-body span {
     font-size: 30px;
     font-weight: 400;
     color: #009688
@@ -15,9 +15,25 @@
     float: left
 }
 
-div.select_img_btn{
+div.select_img_btn {
     margin-top: 55px;
     margin-left: 20px;
 
 }
+
+.top-card {
+    margin-top: 10px;
+}
+
+.top-card > .layui-card-body {
+    height: 160px;
+}
+
+.echarts-div {
+    width: 1300px;
+    height: 400px;
+    margin: 0 auto;
+}
+
+
 

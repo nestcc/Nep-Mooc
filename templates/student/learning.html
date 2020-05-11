@@ -18,6 +18,7 @@
 
     <div class="layui-body layui-bg-gray">
         {% csrf_token %}
+        <input type="hidden" name="cour_id" value="{{ cour_id }}">
         <div style="padding: 10px">
             <fieldset class="layui-elem-field layui-field-title">
                 <legend>[{{ sect_tag }}]{{ sect_name }}</legend>
@@ -42,7 +43,7 @@
                     </div>
                     <div class="layui-card-body">
                         <p align="center">
-                            <video id="sect_video" width="800" controls="controls">
+                            <video id="sect_video" width="800" controls preload>
                                 <source src="/static/{{ sect_media }}" type="video/mp4"/>
                             </video>
                         </p>

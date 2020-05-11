@@ -36,6 +36,11 @@ layui.use(['form', 'element', 'laydate'], function () {
                             console.log(data)
                         }
                     });
+                } else if (data['error'] === 'None Type') {
+                    layer.msg('课程名称或课程类型为空', {
+                        time: 0,
+                        btn: ['confirm']
+                    })
                 } else {
                     layer.msg(data['status'], {
                         time: 0,

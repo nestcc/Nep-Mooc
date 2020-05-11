@@ -3,20 +3,29 @@ from django.http import HttpResponse, JsonResponse
 from index.models import NepCourse, NepLearnStatus, NepSection
 from .controller.course import Course
 from .controller.allStatus import *
+from .controller.recommend import *
+import random
 
 
 # Create your views here.
 
-def login(request):
-    return HttpResponse('login_form')
-
-
 def index(request):
+    cour_list = NepCourse.objects.order_by('?')[:5]
     content = {'class_my_course': '',
                'class_search_course': '',
                'class_search_user': '',
-               'class_profile': ''}
+               'class_profile': '',
+               'cour_list': cour_list}
     return render(request, 'student/index.html', content)
+
+
+def get_recommend(request):
+    res = get_cloest(int(request.COOKIES['stu_id']))
+    cour_list = []
+    print(res)
+    for each_id in res:
+        cour_list.append(NepCourse.objects.get(pk=each_id[0]))
+    return render(request, 'student/recommend.html', {'cour_list': cour_list})
 
 
 def my_course(request, page=1):
@@ -48,7 +57,7 @@ def search_user(request):
                'class_search_course': '',
                'class_search_user': 'layui-this',
                'class_profile': ''}
-    return render(request, 'student/index.html', content)
+    return render(request, 'student/empty.html', content)
 
 
 def profile(request):
@@ -56,7 +65,7 @@ def profile(request):
                'class_search_course': '',
                'class_search_user': '',
                'class_profile': 'layui-this'}
-    return render(request, 'student/index.html', content)
+    return render(request, 'student/empty.html', content)
 
 
 def show_cour_info(request, id):
@@ -71,9 +80,12 @@ def show_cour_detail(request, id):
     return render(request, 'student/course_detail.html', content)
 
 def join_course(request):
-    stu_id = request.COOKIES['stu_id']
+    result = new_status(id_stu=request.COOKIES['stu_id'], id_cour=request.POST['id_cour'])
+    print(result)
+    return JsonResponse(result)
 
-    result = new_status(id_stu=stu_id, id_cour=request.POST['id_cour'])
+def quit_course(request):
+    result = quit_cour(id_stu=request.COOKIES['stu_id'], id_course=request.POST['cour_id'])
     print(result)
     return JsonResponse(result)
 
@@ -83,8 +95,11 @@ def course_page(request, id):
                'class_search_user': '',
                'class_profile': ''}
     if not NepCourse.objects.get(pk=id).cour_avilable:
+        content['cour_id'] = id
         return render(request, 'student/course_not_avai.html', content)
     else:
+        content['cour_obj'] = NepCourse.objects.get(pk=id)
+        content['ls_obj'] = NepLearnStatus.objects.get(course_id=id, student_id=request.COOKIES['stu_id'])
         content['section_list'] = NepSection.objects.filter(sect_cour_id=id).order_by('sect_tag')
         return render(request, 'student/course_page.html', content)
 
@@ -102,8 +117,9 @@ def learn_view(request, sect_id):
                'sect_tag': sect_obj.sect_tag,
                'sect_name': sect_obj.sect_name,
                'sect_text': sect_obj.sect_text,
-               'sect_media': sect_obj.sect_media}
-
+               'sect_media': sect_obj.sect_media,
+               'cour_id': sect_obj.sect_cour_id
+               }
     before_learn(sect_id=sect_id, stu_id=stu_id)
 
     return render(request, 'student/learning.html', content)

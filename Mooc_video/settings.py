@@ -53,6 +53,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'middelware.UserAuth.UserAuthMiddleWare'
+
 ]
 
 ROOT_URLCONF = 'Mooc_video.urls'

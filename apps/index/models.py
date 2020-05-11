@@ -2,9 +2,9 @@ from django.db import models
 
 
 class NepUniversity(models.Model):
-    univ_name = models.CharField('university name', max_length=30, null=False, default='unknow')
-    univ_city = models.CharField('university city', max_length=10, null=False, default='unknow')
-    univ_description = models.CharField('description', max_length=100)
+    univ_name = models.CharField('university name', max_length=30, default='unknow')
+    univ_city = models.CharField('university city', max_length=10, default='unknow')
+    univ_description = models.CharField('description', max_length=100, null=True)
 
     class Meta:
         managed = True
@@ -13,17 +13,20 @@ class NepUniversity(models.Model):
 
 class NepCourse(models.Model):
     COURSE_TYPE = {
-        ('0', '数学'),
-        ('1', '化学'),
-        ('2', '物理'),
-        ('3', '地理'),
-        ('4', '信息技术'),
-        ('5', '外语'),
-        ('6', '政治'),
-        ('7', '历史'),
-        ('8', '医学'),
-        ('9', '法学'),
-        ('10', '经济学')
+        ('0', '哲学'),
+        ('1', '经济学'),
+        ('2', '法学'),
+        ('3', '教育学'),
+        ('4', '文学'),
+        ('5', '历史学'),
+        ('6', '理学'),
+        ('7', '工学'),
+        ('8', '农学'),
+        ('9', '医学'),
+        ('10', '管理学'),
+        ('11', '艺术学'),
+        ('12', '军事学'),
+        ('13', '其他')
     }
 
     cour_name = models.CharField(max_length=45)   #
@@ -36,7 +39,7 @@ class NepCourse(models.Model):
     cour_description = models.TextField(null=True)     #
     cour_univ = models.ForeignKey('index.NepUniversity', models.SET_NULL, null=True)   #
     cour_create_time = models.DateTimeField(null=True)  #
-    cour_image = models.ImageField(null=True)
+    cour_image = models.ImageField(null=True, default='default.png')
 
     class Meta:
         managed = True
@@ -63,6 +66,7 @@ class NepLearnStatus(models.Model):
     percentage = models.IntegerField(default=0)
     start_time = models.DateTimeField()
     last_time = models.DateTimeField(null=True)
+    learn_frequency = models.IntegerField(default=0, null=True)
 
     class Meta:
         managed = True

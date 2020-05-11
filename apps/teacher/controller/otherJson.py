@@ -1,6 +1,7 @@
 from index.models import NepLearnStatus, NepSection, NepSectionStatus, NepCourse
 from student.models import NepStudent
 from teacher.models import NepTeacher
+import datetime
 
 
 def get_learn_list(course_id, limit=5, page=1):
@@ -9,7 +10,7 @@ def get_learn_list(course_id, limit=5, page=1):
     status = 0
     count = status_query.count()
 
-    for each_status in status_query[(page-1)*limit: page*limit]:
+    for each_status in status_query[(page - 1) * limit: page * limit]:
         # print(NepStudent.objects.get(pk=each_status.student_id))
         data.append({
             'id': each_status.id,
@@ -31,7 +32,7 @@ def get_section_list(course_id, limit=5, page=1):
     status = 0
     count = sect_query.count()
 
-    for each_item in sect_query[(page-1)*limit: page*limit]:
+    for each_item in sect_query[(page - 1) * limit: page * limit]:
         data.append({
             'id': each_item.id,
             'sect_name': each_item.sect_name,
@@ -43,6 +44,7 @@ def get_section_list(course_id, limit=5, page=1):
             'count': count,
             'msg': '',
             'data': data}
+
 
 def get_ls_detail(ls_id):
     ls_obj = NepLearnStatus.objects.get(pk=ls_id)
@@ -73,6 +75,33 @@ def get_index_chart(tch_id=1):
         else:
             x_data.append(each_cour.get_cour_type_display())
             y_data.append(1)
+
+    return {'x_data': x_data,
+            'y_data': y_data}
+
+def get_stu_top10(cour_id):
+    ls_obj = NepLearnStatus.objects.filter(course_id=cour_id).order_by('-percentage')
+    x_data, y_data = [], []
+
+    for each_ls in ls_obj[0:10]:
+        x_data.append(each_ls.student.stu_name)
+        y_data.append(NepSectionStatus.objects.filter(course_id=cour_id, student=each_ls.student).count())
+
+    return {'x_data': x_data,
+            'y_data': y_data}
+
+def get_last_week(cour_id):
+    # print(datetime.date.today() - datetime.timedelta(days=6))
+    ss_obj = NepSectionStatus.objects.filter(course_id=cour_id, last_time__gte=datetime.date.today()-datetime.timedelta(days=6))
+    x_data, y_data = [], []
+    stu_top10 = {}
+    for each_ss in ss_obj[0:5]:
+        if each_ss.student.stu_name not in x_data:
+
+            x_data.append(each_ss.student.stu_name)
+            y_data.append(1)
+        else:
+            y_data[x_data.index(each_ss.student.stu_name)] += 1
 
     return {'x_data': x_data,
             'y_data': y_data}

@@ -1,4 +1,3 @@
-var onclick_id = 0;
 var csrf_token = $('input:hidden').val();
 
 layui.use(['laypage', 'layer', 'form'], function () {
@@ -14,24 +13,38 @@ layui.use(['laypage', 'layer', 'form'], function () {
         jump: function (obj, first) {
             if (!first) {
                 var url_spliter = location.href.split('/');
-                if (url_spliter.length === 7){
+                if (url_spliter.length === 7) {
                     location.href = '/student/search_course/' + obj.curr + '/';
                 } else {
                     location.href = '/student/search_course/' + obj.curr + '/' + url_spliter[6] + '/';
                 }
             }
         }
-    })
+    });
+
 });
+
+function get_recommend() {
+    layer.open({
+        title: '推荐课程',
+        type: 2,
+        shade: false,
+        area: '320px',
+        maxmin: true,
+        content: '/student/get_recommend/',
+        closeBtn: 1,
+    });
+}
 
 function view_info(id) {
     layer.open({
+        title: '课程详情',
         type: 2,
         shade: false,
-        area: ['1000px', '700px'],
+        area: ['1000px', '500px'],
         maxmin: true,
         content: '/student/show_cour_detail/' + id + '/',
-        btn: ['join in'],
+        btn: ['参加课程'],
         btn1: function (index, layero) {
             confirm(id)
         }

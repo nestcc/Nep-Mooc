@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include 'nav/head.html' %}
+</head>
+<body>
+<table lay-filter="recommend">
+    <thead>
+    <tr>
+        <th lay-data="{field:'username', width:100}">课程名称</th>
+        <th lay-data="{field:'experience', width:100}">创建教师</th>
+        <th lay-data="{field:'sign'}">课程分类</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for each_cour in cour_list %}
+    <tr>
+        <td>{{ each_cour.cour_name }}</td>
+        <td>{{ each_cour.cour_create_tch.tch_name }}</td>
+        <td>{{ each_cour.get_cour_type_display }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+</body>
+<script src="{% static 'layui/layui.all.js' %}"></script>
+<script>
+    var table = layui.table;
+
+    table.init('recommend', {
+        height: 315 //设置高度
+        , limit: 10
+    });
+</script>
+</html>

@@ -35,6 +35,11 @@ class Section():
     def submit(self):
         if 'OBJ_INIT_ERROR' in self.data_return.keys():
             self.data_return['status'] = 'FAIL'
+
+        elif self.SectionObj.sect_name == '' or self.SectionObj.sect_tag == '':
+            self.data_return['status'] = 'FAIL'
+            self.data_return['error'] = 'None Type'
+            return self.data_return
         else:
             try:
                 self.SectionObj.save()

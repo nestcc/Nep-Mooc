@@ -1,7 +1,6 @@
-layui.use('table', function () {
+layui.use(['table', 'carousel'], function () {
     var table = layui.table;
-
-    console.log('ok layui');
+    var carousel = layui.carousel;
 
     table.init( 'stu_list', {
         page: {layout: ['count', 'prev', 'page', 'next', 'skip']},
@@ -30,4 +29,11 @@ layui.use('table', function () {
     table.on('row(sect_list)', function (obj) {
         window.location.href='/teacher/edit_section_info/' + obj.data['id'] + '/';
     });
+
+    carousel.render({
+        elem: '#status_chart',
+        width: '100%',
+        height: '400px',
+        arrow: 'none'
+    })
 });

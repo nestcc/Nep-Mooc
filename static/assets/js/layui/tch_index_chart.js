@@ -2,7 +2,7 @@ var course_chart = echarts.init(document.getElementById('course_chart'), 'light'
 
 course_chart.setOption({
     title: {
-        text: '您的课程情况'
+        text: '课程类型情况'
     },
     tooltip: {},
     legend: {
@@ -30,3 +30,5 @@ $.get('/teacher/get_index_chart/').done(function (data) {
         }]
     })
 });
+
+
